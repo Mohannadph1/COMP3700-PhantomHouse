@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Phantom House clients and collaborations" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Clients</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="container clearfix">
+            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="process.html">Process</a></li>
+                    <li><a href="equipment.html">Equipment</a></li>
+                    <li><a href="clients.html" class="current">Clients</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero" style="background-image: url('images/clients-hero.jpg');">
+        <h1 style="color: rgb(110, 34, 34);">Trusted Partnerships</h1>
+    </div>
+
+    <div class="section-maroon">
+        <div class="container center">
+            <h2 class="section-title">Fueling Our Vision Together</h2>
+            <img src="images/clients.jpg" alt="Client logos" />
+        </div>
+    </div>
+
+    <div class="section-teal">
+        <div class="container">
+            <h2 class="section-title">Project Request Form</h2>
+
+            <form action="https://httpbin.org/get" method="get">
+                <fieldset>
+                    <legend>Your First Project</legend>
+
+                    <label for="fullname2">Name</label>
+                    <input type="text" id="fullname2" name="fullname2" />
+
+                    <label for="email2">Email</label>
+                    <input type="email" id="email2" name="email2" />
+
+                    <label for="date2">Preferred Date</label>
+                    <input type="date" id="date2" name="date2" />
+
+                    <label for="project2">Project Type</label>
+                    <select id="project2" name="project2">
+                        <option value="commercial">Commercial</option>
+                        <option value="event">Event Coverage</option>
+                        <option value="documentary">Documentary</option>
+                        <option value="creative_film">Creative Film</option>
+                    </select>
+
+                    <p><strong>Production scale:</strong></p>
+                    <p>
+                        <input type="radio" id="scale1" name="scale" value="small" />
+                        <label for="scale1">Small</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="scale2" name="scale" value="medium" />
+                        <label for="scale2">Medium</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="scale3" name="scale" value="large" />
+                        <label for="scale3">Large</label>
+                    </p>
+
+                    <p><strong>Required extras:</strong></p>
+                    <p>
+                        <input type="checkbox" id="extra1" name="drone" value="yes" />
+                        <label for="extra1">Drone Coverage</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="extra2" name="subtitles" value="yes" />
+                        <label for="extra2">Subtitles</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="extra3" name="social_cut" value="yes" />
+                        <label for="extra3">Social Media Cut</label>
+                    </p>
+
+                    <label for="brief2">Brief</label>
+                    <textarea id="brief2" name="brief2" rows="5" cols="40"></textarea>
+
+                    <input type="submit" value="Submit" />
+                    <input type="reset" value="Reset" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Phantom House © 2026 </p>
+    </div>
+
+</body>
+</html>
