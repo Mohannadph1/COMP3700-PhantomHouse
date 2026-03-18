@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Phantom House services" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Services</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="container clearfix">
+            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="current">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="process.html">Process</a></li>
+                    <li><a href="equipment.html">Equipment</a></li>
+                    <li><a href="clients.html">Clients</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero" style="background-image: url('images/services-hero.jpg');">
+        <h1>Our Services</h1>
+        <p>Where vision becomes cinema, and every frame tells a story.</p>
+    </div>
+
+    <div class="section-teal">
+        <div class="container clearfix">
+            <div class="col-4">
+                <div class="card">
+                    <img src="images/service1.jpg" alt="Narrative Advertising" />
+                    <h3>Narrative Advertising</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="images/service2.jpg" alt="Underwater Filming" />
+                    <h3>Underwater Filming</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="images/service3.jpg" alt="Film Production" />
+                    <h3>Film Production</h3>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <img src="images/service4.jpg" alt="Event Documentation" />
+                    <h3>Event Documentation</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-maroon">
+        <div class="container">
+            <h2 class="section-title">Service Table</h2>
+            <table>
+                <tr>
+                    <th rowspan="2">Service</th>
+                    <th colspan="2">Details</th>
+                </tr>
+                <tr>
+                    <th>Main Focus</th>
+                    <th>Output</th>
+                </tr>
+                <tr>
+                    <td>Narrative Advertising</td>
+                    <td>Brand storytelling</td>
+                    <td>Promotional cinematic film</td>
+                </tr>
+                <tr>
+                    <td>Underwater Filming</td>
+                    <td>Marine visuals</td>
+                    <td>Documentary and creative shots</td>
+                </tr>
+                <tr>
+                    <td>Film Production</td>
+                    <td>Full production workflow</td>
+                    <td>Short films and commercial work</td>
+                </tr>
+                <tr>
+                    <td>Event Documentation</td>
+                    <td>Live coverage</td>
+                    <td>Highlight films and recap edits</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section-teal">
+        <div class="container">
+            <h2 class="section-title">Service Inquiry Form</h2>
+
+            <form action="https://httpbin.org/get" method="get">
+                <fieldset>
+                    <legend>Request a Service</legend>
+
+                    <label for="clientname">Full Name</label>
+                    <input type="text" id="clientname" name="clientname" />
+
+                    <label for="clientemail">Email</label>
+                    <input type="email" id="clientemail" name="clientemail" />
+
+                    <label for="service_type">Select Service</label>
+                    <select id="service_type" name="service_type">
+                        <option value="narrative_advertising">Narrative Advertising</option>
+                        <option value="underwater_filming">Underwater Filming</option>
+                        <option value="film_production">Film Production</option>
+                        <option value="event_documentation">Event Documentation</option>
+                    </select>
+
+                    <p><strong>Preferred output:</strong></p>
+                    <p>
+                        <input type="radio" id="output1" name="output_format" value="short_film" />
+                        <label for="output1">Short Film</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="output2" name="output_format" value="commercial" />
+                        <label for="output2">Commercial</label>
+                    </p>
+
+                    <p><strong>Additional needs:</strong></p>
+                    <p>
+                        <input type="checkbox" id="need1" name="needs_lighting" value="yes" />
+                        <label for="need1">Lighting</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="need2" name="needs_editing" value="yes" />
+                        <label for="need2">Editing</label>
+                    </p>
+
+                    <label for="details1">Project Description</label>
+                    <textarea id="details1" name="details1" rows="5" cols="40"></textarea>
+
+                    <input type="submit" value="Send Request" />
+                    <input type="reset" value="Clear" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Phantom House © 2026 </p>
+    </div>
+
+</body>
+</html>
