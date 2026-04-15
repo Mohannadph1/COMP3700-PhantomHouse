@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Feedback</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .page-header { background:linear-gradient(135deg,#5a1200,#145b61); padding:70px 20px; text-align:center; }
+        .page-header h1 { font-size:2.8rem; color:#fff; }
+        .page-header p  { color:var(--gold); font-size:1.1rem; }
+        .section-maroon { background-color:var(--maroon); padding:50px 0; }
+        .form-card { background-color:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:12px; padding:40px; }
+        .form-label { color:var(--gold); font-weight:600; }
+        .form-control, .form-select { background-color:rgba(255,255,255,0.08)!important; color:#fff!important; border-color:rgba(255,255,255,0.25)!important; }
+        .form-control::placeholder { color:rgba(255,255,255,0.4); }
+        .form-check-label { color:#eee; }
+        .error-msg { color:#ff6b6b; font-size:0.85rem; display:block; margin-top:4px; }
+        .success-box { background:linear-gradient(135deg,#145b61,#5a1200); border-radius:12px; padding:40px; text-align:center; display:none; }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+        
+        .form-label { color:var(--gold) !important; font-weight:600; }
+        .form-check-label { color:#eee !important; font-weight:400; }
+        .form-card .form-check-label { color:#eee !important; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link active fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <h1>Client Feedback</h1>
+    <p>Help us improve by sharing your experience with Phantom House.</p>
+</div>
+
+<section class="section-maroon">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9">
+
+                <div class="success-box" id="successBox">
+                    <h2 class="text-white mb-3">&#10003; Thank You!</h2>
+                    <p class="text-light fs-5">Your feedback has been received. We appreciate you taking the time.</p>
+                    <button class="btn btn-outline-light mt-3" onclick="resetForm()">Submit Another Response</button>
+                </div>
+
+                
+                <div class="form-card" id="feedbackFormDiv">
+                    <h3 class="mb-4 text-center">Feedback Questionnaire</h3>
+
+                    <form name="feedbackForm" action="" onsubmit="return validateFeedback()">
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label" for="fbName">Full Name *</label>
+                            <input type="text" id="fbName" name="fbName" class="form-control" placeholder="Enter your full name" />
+                            <span class="error-msg" id="errName"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label" for="fbEmail">Email Address *</label>
+                            <input type="text" id="fbEmail" name="fbEmail" class="form-control" placeholder="example@domain.com" />
+                            <span class="error-msg" id="errEmail"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label" for="fbPhone">Phone Number * (8 digits, starts with 9 or 7)</label>
+                            <input type="text" id="fbPhone" name="fbPhone" class="form-control" placeholder="e.g. 91234567" maxlength="8" />
+                            <span class="error-msg" id="errPhone"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label" for="fbService">Which service did you use? *</label>
+                            <select id="fbService" name="fbService" class="form-select">
+                                <option value="">-- Select a service --</option>
+                                <option value="Narrative Advertising">Narrative Advertising</option>
+                                <option value="Underwater Filming">Underwater Filming</option>
+                                <option value="Film Production">Film Production</option>
+                                <option value="Event Documentation">Event Documentation</option>
+                            </select>
+                            <span class="error-msg" id="errService"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label d-block">Overall Experience *</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fbExp" id="expExc" value="Excellent" />
+                                <label class="form-check-label" for="expExc">Excellent</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fbExp" id="expGood" value="Good" />
+                                <label class="form-check-label" for="expGood">Good</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fbExp" id="expAvg" value="Average" />
+                                <label class="form-check-label" for="expAvg">Average</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="fbExp" id="expPoor" value="Poor" />
+                                <label class="form-check-label" for="expPoor">Poor</label>
+                            </div>
+                            <span class="error-msg" id="errExp"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label d-block">What did you appreciate most? (optional)</label>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="chkProfessional" name="chkProfessional" value="Professionalism"/><label class="form-check-label" for="chkProfessional">Professionalism</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="chkCreativity"   name="chkCreativity"   value="Creativity"/><label class="form-check-label" for="chkCreativity">Creativity</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="chkDelivery"     name="chkDelivery"     value="On-time delivery"/><label class="form-check-label" for="chkDelivery">On-time delivery</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="chkQuality"      name="chkQuality"      value="Video quality"/><label class="form-check-label" for="chkQuality">Video quality</label></div>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label class="form-label" for="fbComments">Detailed Comments * (minimum 20 characters)</label>
+                            <textarea id="fbComments" name="fbComments" class="form-control" rows="5" placeholder="Please share your thoughts in detail..."></textarea>
+                            <span class="error-msg" id="errComments"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="fbAgree" name="fbAgree" />
+                                <label class="form-check-label" for="fbAgree">I agree that this feedback may be used for quality improvement purposes. *</label>
+                            </div>
+                            <span class="error-msg" id="errAgree"></span>
+                        </div>
+
+                        
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-warning btn-lg px-5" value="Submit Feedback" />
+                            <input type="button" class="btn btn-outline-light btn-lg px-4 ms-3" value="Clear" onclick="clearFeedbackForm()" />
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+/* 
+   This JavaScript is for the questionnaire form.
+   It checks if the user filled in the form correctly before submitting it.
+   It also shows error messages if something is missing or wrong.
+*/
+
+/* 
+   This helper function shows an error message under a field.
+   If the message is empty, it clears the error.
+*/
+function showError(id, message) {
+    document.getElementById(id).innerHTML = message;
+}
+
+/* 
+   This helper function clears all old error messages
+   before the form is checked again.
+*/
+function clearAllErrors() {
+    /* Go through all the error message areas and make them empty */
+    var errorIds = ["errName", "errEmail", "errPhone", "errService", "errExp", "errComments", "errAgree"];
+    for (var i = 0; i < errorIds.length; i++) {
+        document.getElementById(errorIds[i]).innerHTML = "";
+    }
+}
+
+/* 
+   This is the main validation function.
+   It runs when the form is submitted.
+   It checks each field one by one and stops if something is wrong.
+*/
+function validateFeedback() {
+
+    clearAllErrors(); /* clear old errors first */
+
+    /* Get all the form fields from the page */
+    var nameField     = document.getElementById("fbName");
+    var emailField    = document.getElementById("fbEmail");
+    var phoneField    = document.getElementById("fbPhone");
+    var serviceField  = document.getElementById("fbService");
+    var commentsField = document.getElementById("fbComments");
+    var agreeField    = document.getElementById("fbAgree");
+
+    /* 
+       Check the full name.
+       It should not be empty, should only have letters and spaces,
+       and should be at least 3 characters long.
+   */
+    if (nameField.value == "") {
+        showError("errName", "Name is required.");
+        nameField.focus(); /* move the cursor to this field */
+        return false;
+    }
+    if (nameField.value.search(/^[A-Za-z\s]+$/) == -1) {
+        /* this checks if the name has only letters and spaces */
+        showError("errName", "Name must contain letters only (no numbers or symbols).");
+        nameField.focus();
+        return false;
+    }
+    if (nameField.value.length < 3) {
+        /* this checks the minimum length of the name */
+        showError("errName", "Name must be at least 3 characters long.");
+        nameField.focus();
+        return false;
+    }
+
+    /* 
+       Check the email address.
+       It should not be empty and must contain @ and .
+    */
+    if (emailField.value == "") {
+        showError("errEmail", "Email address is required.");
+        emailField.focus();
+        return false;
+    }
+    if (emailField.value.indexOf("@", 0) < 0) {
+        /* this checks if @ is inside the email */
+        showError("errEmail", "Please enter a valid email address (must contain @).");
+        emailField.focus();
+        return false;
+    }
+    if (emailField.value.indexOf(".", 0) < 0) {
+        /* this checks if . is inside the email */
+        showError("errEmail", "Please enter a valid email address (must contain .).");
+        emailField.focus();
+        return false;
+    }
+
+    /* 
+       Check the phone number.
+       It should not be empty and must be 8 digits,
+       starting with 9 or 7.
+     */
+    if (phoneField.value == "") {
+        showError("errPhone", "Phone number is required.");
+        phoneField.focus();
+        return false;
+    }
+    if (phoneField.value.search(/^[97]\d{7}$/) == -1) {
+        showError("errPhone", "Phone must be 8 digits and start with 9 or 7 (e.g. 91234567).");
+        phoneField.focus();
+        return false;
+    }
+
+    /* 
+       Check if the user selected a service from the dropdown.
+     */
+    if (serviceField.selectedIndex < 1) {
+        /* if it is still on the first option, nothing was selected */
+        showError("errService", "Please select the service you used.");
+        serviceField.focus();
+        return false;
+    }
+
+    /* 
+       Check the radio buttons for overall experience.
+       The user must choose one option.
+    */
+    var radios = document.forms["feedbackForm"]["fbExp"];
+    var expSelected = false;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            expSelected = true;
+            break;
+        }
+    }
+    if (!expSelected) {
+        showError("errExp", "Please select your overall experience rating.");
+        return false;
+    }
+
+    /* 
+       Check the comments box.
+       It should not be empty and must have at least 20 characters.
+    */
+    if (commentsField.value == "") {
+        showError("errComments", "Comments are required.");
+        commentsField.focus();
+        return false;
+    }
+    if (commentsField.value.length < 20) {
+        showError("errComments", "Comments must be at least 20 characters. You entered: " + commentsField.value.length + " characters.");
+        commentsField.focus();
+        return false;
+    }
+
+    /* 
+       Check if the agreement checkbox is ticked.
+    */
+
+    if (!agreeField.checked) {
+        showError("errAgree", "You must agree to the terms before submitting.");
+        return false;
+    }
+
+    /* If everything is correct, hide the form and show success message */
+    document.getElementById("feedbackFormDiv").style.display = "none";
+    document.getElementById("successBox").style.display      = "block";
+
+    return false; /* stop real form submission because there is no server */
+}
+
+
+/* 
+   This function clears the form manually.
+   It resets all fields, radio buttons, checkboxes, and errors.
+*/
+function clearFeedbackForm() {
+    /* Clear all text boxes and the comments area */
+    document.getElementById("fbName").value     = "";
+    document.getElementById("fbEmail").value    = "";
+    document.getElementById("fbPhone").value    = "";
+    document.getElementById("fbComments").value = "";
+
+    /* Reset the dropdown back to the first option */
+    document.getElementById("fbService").selectedIndex = 0;
+
+    /* Untick all radio buttons */
+    var radios = document.forms["feedbackForm"]["fbExp"];
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+
+    /* Untick all checkboxes */
+    var checkboxIds = ["chkProfessional", "chkCreativity", "chkDelivery", "chkQuality", "fbAgree"];
+    for (var i = 0; i < checkboxIds.length; i++) {
+        document.getElementById(checkboxIds[i]).checked = false;
+    }
+
+    /* Remove all old error messages */
+    clearAllErrors();
+}
+
+/* 
+   This function hides the success message
+   and shows the form again for another response.
+ */
+function resetForm() {
+    document.getElementById("successBox").style.display      = "none";
+    document.getElementById("feedbackFormDiv").style.display = "block";
+    clearFeedbackForm();
+}
+</script>
+</body>
+</html>
