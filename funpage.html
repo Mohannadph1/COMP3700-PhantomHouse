@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Cinema Quiz</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .page-header { background:linear-gradient(135deg,#260b04,#145b61); padding:70px 20px; text-align:center; }
+        .page-header h1 { font-size:2.8rem; color:#fff; }
+        .page-header p  { color:var(--gold); font-size:1.1rem; }
+        .section-maroon { background-color:var(--maroon); padding:50px 0; }
+        .quiz-card { background-color:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); border-radius:14px; padding:40px; max-width:700px; margin:0 auto; }
+        .question-text { font-family:'Playfair Display',serif; font-size:1.45rem; color:#fff; margin:20px 0; min-height:60px; }
+        .option-btn { display:block; width:100%; text-align:left; padding:14px 20px; margin-bottom:12px; background-color:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:#fff; font-size:1rem; cursor:pointer; font-family:'Lato',Arial,sans-serif; }
+        .option-btn:hover { background-color:rgba(255,214,0,0.2); border-color:#ffd700; }
+        .option-btn.correct { background-color:rgba(0,180,90,0.35)!important; border-color:#00b45a!important; }
+        .option-btn.wrong   { background-color:rgba(220,50,50,0.35)!important; border-color:#dc3232!important; }
+        .feedback-text { font-size:1rem; min-height:28px; font-weight:700; margin-top:8px; }
+        .feedback-correct { color:#2eff90; }
+        .feedback-wrong   { color:#ff6060; }
+        .score-board { background:linear-gradient(135deg,#145b61,#260b04); border:2px solid var(--gold); border-radius:14px; padding:40px; text-align:center; display:none; }
+        .score-number { font-size:4rem; font-weight:900; color:var(--gold); font-family:'Playfair Display',serif; }
+        .timer-display { font-size:1.8rem; font-weight:700; color:var(--gold); min-width:48px; text-align:center; }
+        .timer-urgent  { color:#ff4444; }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link active fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <h1>&#127916; Cinema Trivia Quiz</h1>
+    <p>Test your knowledge of filmmaking, cameras, and cinematic terms!</p>
+</div>
+
+<section class="section-maroon">
+    <div class="container">
+
+        <div class="score-board" id="scoreBoard">
+            <div id="medalEmoji" style="font-size:4rem;">&#127942;</div>
+            <p class="fs-4 mt-3" id="scoreTitle">Quiz Complete!</p>
+            <div class="score-number"><span id="finalScore">0</span> / 10</div>
+            <p class="fs-5 mt-2" id="scoreMsg"></p>
+            <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+                <input type="button" class="btn btn-warning btn-lg" value="Play Again" onclick="restartQuiz()" />
+                <input type="button" class="btn btn-outline-light btn-lg" value="Review Answers" onclick="showReview()" />
+            </div>
+            <div id="reviewPanel" class="mt-4 text-start" style="display:none;"></div>
+        </div>
+
+        <div class="quiz-card" id="quizCard">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <div>
+                    <div style="font-size:0.9rem; color:rgba(255,255,255,0.55);" id="qCounter">Question 1 of 10</div>
+                    <div class="progress mt-1" style="width:200px; height:10px;">
+                        <div class="progress-bar bg-warning" id="progressFill" style="width:10%;"></div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success fs-6">Score: <span id="liveScore">0</span></span>
+                    <div class="timer-display" id="timerDisplay">20</div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap mb-2">
+                <input type="button" class="btn btn-outline-warning btn-sm" id="btnFifty" value="50/50" onclick="useFiftyFifty()" />
+                <input type="button" class="btn btn-outline-info btn-sm"    id="btnHint"  value="Hint"  onclick="useHint()" />
+            </div>
+            <div id="hintBox" style="min-height:20px; font-size:0.9rem; color:#7ee8fa;"></div>
+
+            <div class="question-text" id="questionText">Loading...</div>
+
+            <div id="optionsContainer"></div>
+
+            <div class="feedback-text" id="feedbackText"></div>
+
+            <div class="text-end mt-4">
+                <input type="button" class="btn btn-warning px-5" id="btnNext" value="Next" onclick="nextQuestion()" style="display:none;" />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* 
+   This JavaScript is for the cinema trivia quiz page.
+   It controls the quiz, timer, score, hints, and final result.
+   It also creates some parts of the quiz on the page using JavaScript.
+*/
+
+/* 
+   These are all the quiz questions.
+   Each question has the question text, answer choices,
+   the correct answer, a hint, and an explanation.
+*/
+var questions = [
+    { q: "What does 'cinematography' literally mean?",
+      options: ["Writing with cameras","Writing with light and movement","Writing with sound","Writing with color"],
+      answer: 1, hint: "Think about Greek roots: kinema = movement, graphein = writing.",
+      explain: "Cinematography = kinema (movement) + graphein (writing) — writing with movement." },
+
+    { q: "Which camera stabilizer removes shake from handheld shots?",
+      options: ["Dolly","Jib","Gimbal","Slider"],
+      answer: 2, hint: "It has motors that counteract unwanted movement.",
+      explain: "A gimbal uses motorized axes to keep the camera steady and shake-free." },
+
+    { q: "What does 'B-roll' footage mean in film production?",
+      options: ["Main story footage","Behind-the-scenes bloopers","Supplemental cutaway footage","Black-and-white scenes"],
+      answer: 2, hint: "It is used to cut away from the main interview or action.",
+      explain: "B-roll is supplemental footage intercut with main footage (A-roll) to add context." },
+
+    { q: "What frame rate creates the most natural cinematic look?",
+      options: ["30 fps","60 fps","24 fps","120 fps"],
+      answer: 2, hint: "Most Hollywood movies use this standard.",
+      explain: "24 fps has been the cinema standard since the 1930s." },
+
+    { q: "What does 'color grading' do in post-production?",
+      options: ["Adds sound effects","Removes camera shake","Adjusts the colors and mood of footage","Adds subtitles"],
+      answer: 2, hint: "Think about changing the warm/cool feel of a scene.",
+      explain: "Color grading adjusts brightness, contrast, and color tones to set the visual mood." },
+
+    { q: "Which lens type creates background blur (bokeh)?",
+      options: ["Wide-angle lens","Fish-eye lens","Prime lens with wide aperture","Telephoto zoom at f/22"],
+      answer: 2, hint: "A lower f-number like f/1.4 creates shallow depth of field.",
+      explain: "A prime lens with a wide aperture (low f-stop) blurs the background beautifully." },
+
+    { q: "What is a 'drone shot' in filmmaking?",
+      options: ["A close-up of an actor","A slow-motion shot","An aerial shot by unmanned flying camera","A shot filmed underwater"],
+      answer: 2, hint: "It flies in the air to capture wide overhead perspectives.",
+      explain: "Drone shots use unmanned aerial vehicles (UAVs) fitted with cameras for aerial footage." },
+
+    { q: "In a film script, what does 'EXT.' stand for?",
+      options: ["Extended scene","Extra character","Exterior location","Exit direction"],
+      answer: 2, hint: "It tells you whether the scene is inside or outside.",
+      explain: "EXT. = Exterior. The scene takes place outdoors." },
+
+    { q: "What is the purpose of a clapperboard (slate) on set?",
+      options: ["Block light from the lens","Sync audio and video and mark takes","Measure distance to subject","Hold the script"],
+      answer: 1, hint: "It makes a clap so the editor can align sound with the frame.",
+      explain: "The clapperboard's clap creates a visual/audio sync point for the editor." },
+
+    { q: "Which technique cuts between two events happening simultaneously?",
+      options: ["Match cut","J-cut","Parallel editing","Jump cut"],
+      answer: 2, hint: "It creates tension by showing two storylines at the same time.",
+      explain: "Parallel editing (cross-cutting) intercuts two events to suggest simultaneous action." }
+];
+
+/*
+   These variables keep track of the quiz while the user is playing.
+*/
+var currentIndex  = 0;    /* this shows which question the user is on */
+var score         = 0;    /* this stores the user's score */
+var userAnswers   = [];   /* this saves the answer chosen for each question */
+var timerInterval = null; /* this stores the timer so it can be stopped */
+var timeLeft      = 20;   /* this is the time for each question */
+var usedFifty     = false;/* this checks if 50/50 was already used */
+var usedHint      = false;/* this checks if hint was already used */
+
+/* 
+   This function loads one question onto the page.
+   It shows the question, choices, progress, and starts the timer.
+ */
+function loadQuestion(index) {
+
+    /* If there are no more questions, show the final score */
+    if (index >= questions.length) {
+        showScoreBoard();
+        return;
+    }
+
+    var q = questions[index]; /* get the current question */
+
+    /* Show which question number the user is on */
+    document.getElementById("qCounter").innerHTML = "Question " + (index + 1) + " of " + questions.length;
+
+    /* Update the progress bar */
+    var pct = ((index + 1) / questions.length) * 100;
+    document.getElementById("progressFill").style.width = pct + "%";
+
+    /* Show the question text */
+    document.getElementById("questionText").innerHTML = q.q;
+
+    /* Clear old feedback and hint, and hide the Next button */
+    document.getElementById("feedbackText").innerHTML = "";
+    document.getElementById("feedbackText").className = "feedback-text";
+    document.getElementById("hintBox").innerHTML      = "";
+    document.getElementById("btnNext").style.display  = "none";
+
+    /* Reset the lifeline buttons for the new question */
+    usedFifty = false;
+    usedHint  = false;
+    document.getElementById("btnFifty").disabled = false;
+    document.getElementById("btnHint").disabled  = false;
+
+    /* This part creates the answer buttons using JavaScript */
+    var container = document.getElementById("optionsContainer");
+    container.innerHTML = ""; /* remove old buttons */
+
+    for (var i = 0; i < q.options.length; i++) {
+        /* Make one button for each answer option */
+        var btn = document.createElement("button");
+        btn.className   = "option-btn";
+        btn.innerHTML   = q.options[i];
+        btn.setAttribute("data-index", i); /* save the option number */
+
+        /* When the button is clicked, it sends that answer to checkAnswer */
+        (function(optionIndex) {
+            btn.onclick = function() {
+                checkAnswer(optionIndex);
+            };
+        })(i);
+
+        container.appendChild(btn); /* put the button on the page */
+    }
+
+    /* Start the timer for this question */
+    startTimer();
+}
+
+/* 
+   This function starts the countdown from 20 seconds.
+   If the time finishes, the answer is counted wrong.
+*/
+function startTimer() {
+    clearInterval(timerInterval); /* stop old timer if there is one */
+    timeLeft = 20;
+
+    var display   = document.getElementById("timerDisplay");
+    display.innerHTML  = timeLeft;
+    display.className  = "timer-display";
+
+    timerInterval = setInterval(function() {
+        timeLeft = timeLeft - 1;
+        display.innerHTML = timeLeft;
+
+        /* Make the timer look urgent when 5 seconds are left */
+        if (timeLeft <= 5) {
+            display.className = "timer-display timer-urgent";
+        }
+
+        /* When time finishes, stop the timer and show correct answer */
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            disableAllOptions();
+            userAnswers[currentIndex] = -1; /* -1 means no answer was chosen */
+            document.getElementById("feedbackText").innerHTML  = "Time's up! Correct answer: " + questions[currentIndex].options[questions[currentIndex].answer];
+            document.getElementById("feedbackText").className  = "feedback-text feedback-wrong";
+            document.getElementById("btnNext").style.display   = "inline-block";
+        }
+    }, 1000); /* run every 1 second */
+}
+
+/* 
+   This function checks if the selected answer is correct or not.
+*/
+function checkAnswer(selectedIndex) {
+    clearInterval(timerInterval); /* stop the timer after an answer is clicked */
+
+    var q         = questions[currentIndex];
+    var isCorrect = (selectedIndex == q.answer); /* compare chosen answer with correct answer */
+
+    userAnswers[currentIndex] = selectedIndex; /* save the user's answer */
+
+    disableAllOptions(); /* stop the user from clicking more answers */
+
+    /* Show correct answer in green and wrong selected answer in red */
+    var buttons = document.getElementById("optionsContainer").getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        var btnIndex = parseInt(buttons[i].getAttribute("data-index"));
+        if (btnIndex == q.answer) {
+            buttons[i].className = "option-btn correct";
+        } else if (btnIndex == selectedIndex && !isCorrect) {
+            buttons[i].className = "option-btn wrong";
+        }
+    }
+
+    /* Update score and show feedback */
+    if (isCorrect) {
+        score = score + 1; /* add 1 point if correct */
+        document.getElementById("liveScore").innerHTML    = score;
+        document.getElementById("feedbackText").innerHTML = "Correct! " + q.explain;
+        document.getElementById("feedbackText").className = "feedback-text feedback-correct";
+    } else {
+        document.getElementById("feedbackText").innerHTML = "Wrong. Correct answer: " + q.options[q.answer] + ". " + q.explain;
+        document.getElementById("feedbackText").className = "feedback-text feedback-wrong";
+    }
+
+    /* Show the Next button after answering */
+    document.getElementById("btnNext").style.display = "inline-block";
+}
+
+/* 
+   This function disables all answer buttons
+   so the user cannot click again.
+*/
+function disableAllOptions() {
+    var buttons = document.getElementById("optionsContainer").getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
+}
+
+/*
+   This function moves the quiz to the next question.
+*/
+function nextQuestion() {
+    currentIndex = currentIndex + 1;
+    loadQuestion(currentIndex);
+}
+
+/*
+   This function is the 50/50 lifeline.
+   It hides 2 wrong answers.
+*/
+function useFiftyFifty() {
+    if (usedFifty) { return; }
+    usedFifty = true;
+    document.getElementById("btnFifty").disabled = true;
+
+    var q       = questions[currentIndex];
+    var buttons = document.getElementById("optionsContainer").getElementsByTagName("button");
+    var removed = 0;
+
+    /* Hide two wrong answer buttons */
+    for (var i = 0; i < buttons.length; i++) {
+        if (removed >= 2) { break; }
+        var btnIndex = parseInt(buttons[i].getAttribute("data-index"));
+        if (btnIndex != q.answer) {
+            buttons[i].style.visibility = "hidden"; /* hide wrong option */
+            removed = removed + 1;
+        }
+    }
+}
+
+/* 
+   This function shows a hint for the current question.
+*/
+function useHint() {
+    if (usedHint) { return; }
+    usedHint  = true;
+    document.getElementById("btnHint").disabled   = true;
+    document.getElementById("hintBox").innerHTML  = "Hint: " + questions[currentIndex].hint;
+}
+
+/*
+   This function shows the final score page.
+   It also gives a title/message based on the result.
+*/
+function showScoreBoard() {
+    clearInterval(timerInterval);
+    document.getElementById("quizCard").style.display   = "none";
+    document.getElementById("scoreBoard").style.display = "block";
+    document.getElementById("finalScore").innerHTML     = score;
+
+    /* Work out the percentage and choose a result message */
+    var pct = (score / questions.length) * 100;
+    var medal, title, msg;
+
+    if (pct == 100) {
+        medal = "Trophy"; title = "Perfect Score!";
+        msg   = "Outstanding! You are a true cinema expert!";
+    } else if (pct >= 70) {
+        medal = "Gold";   title = "Excellent!";
+        msg   = "Great job! You clearly know your cinematography.";
+    } else if (pct >= 50) {
+        medal = "Silver"; title = "Good Effort!";
+        msg   = "Not bad! Keep watching films and learning.";
+    } else {
+        medal = "Film";   title = "Keep Practicing!";
+        msg   = "Cinema has a lot to offer — try again!";
+    }
+
+    document.getElementById("medalEmoji").innerHTML = medal;
+    document.getElementById("scoreTitle").innerHTML = title;
+    document.getElementById("scoreMsg").innerHTML   = msg;
+}
+
+/* 
+   This function shows a review of all answers after the quiz.
+   It tells the user what they chose and what was correct.
+*/
+function showReview() {
+    var panel = document.getElementById("reviewPanel");
+    panel.style.display = "block";
+    panel.innerHTML     = "<h5 style='color:var(--gold);' class='mt-4 mb-3'>Answer Review:</h5>";
+
+    for (var i = 0; i < questions.length; i++) {
+        var q        = questions[i];
+        var chosen   = userAnswers[i];
+        var correct  = (chosen == q.answer);
+        var icon     = correct ? "Correct" : "Wrong";
+        var color    = correct ? "#2eff90" : "#ff6060";
+        var chosenTx = (chosen == -1 || chosen == undefined) ? "No answer (time ran out)" : q.options[chosen];
+
+        panel.innerHTML = panel.innerHTML +
+            "<div class='mb-3 p-3 rounded' style='background:rgba(255,255,255,0.06)'>" +
+            "<strong>" + icon + " Q" + (i + 1) + ":</strong> " + q.q + "<br/>" +
+            "<span style='color:" + color + "'>Your answer: " + chosenTx + "</span><br/>" +
+            "<span style='color:#2eff90'>Correct: " + q.options[q.answer] + "</span>" +
+            "</div>";
+    }
+}
+
+/*
+   This function resets everything and starts the quiz again.
+*/
+function restartQuiz() {
+    currentIndex  = 0;
+    score         = 0;
+    userAnswers   = [];
+    timeLeft      = 20;
+
+    document.getElementById("liveScore").innerHTML        = "0";
+    document.getElementById("scoreBoard").style.display   = "none";
+    document.getElementById("quizCard").style.display     = "block";
+    document.getElementById("reviewPanel").style.display  = "none";
+    document.getElementById("reviewPanel").innerHTML      = "";
+
+    loadQuestion(0);
+}
+
+/* This starts the quiz automatically when the page opens */
+loadQuestion(0);
+</script>
+</body>
+</html>

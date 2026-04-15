@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Project Calculator</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .page-header { background:linear-gradient(135deg,#145b61,#5a1200); padding:70px 20px; text-align:center; }
+        .page-header h1 { font-size:2.8rem; color:#fff; }
+        .page-header p  { color:var(--gold); font-size:1.1rem; }
+        .section-teal   { background-color:var(--teal); padding:50px 0; }
+        .section-maroon { background-color:var(--maroon); padding:50px 0; }
+        .calc-card { background-color:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:12px; padding:36px; }
+        .form-label  { color:var(--gold); font-weight:600; }
+        .form-control,.form-select { background-color:rgba(255,255,255,0.08)!important; color:#fff!important; border-color:rgba(255,255,255,0.25)!important; }
+        .result-box { background:linear-gradient(135deg,#145b61,#260b04); border:2px solid var(--gold); border-radius:12px; padding:30px; margin-top:30px; display:none; }
+        .result-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.12); }
+        .result-row:last-child { border-bottom:none; }
+        .total-row { font-size:1.4rem; font-weight:700; color:var(--gold); margin-top:10px; }
+        .discount-badge { background-color:#ffd700; color:#000; border-radius:6px; padding:3px 10px; font-size:0.85rem; font-weight:700; }
+        .formula-box { background:rgba(255,255,255,0.04); border-left:4px solid var(--gold); padding:16px 20px; border-radius:4px; font-size:0.92rem; color:rgba(255,255,255,0.8); }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+        .form-label { color:var(--gold) !important; font-weight:600; }
+        .form-check-label { color:#eee !important; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link active fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="page-header">
+    <h1>&#127916; Project Cost Calculator</h1>
+    <p>Get an instant estimate for your cinematic production project.</p>
+</div>
+
+
+<section class="section-maroon">
+    <div class="container">
+        <div class="formula-box">
+            <strong>Formula:</strong> Base cost = (Daily crew rate &times; shooting days) + Equipment package + Post-production.<br/>
+            <strong>Discounts:</strong> Loyal clients (3+ projects) get 15% off &bull; Students / NGOs get 10% off.<br/>
+            <strong>VAT (5%)</strong> is applied to the final amount after discount.
+        </div>
+    </div>
+</section>
+
+
+<section class="section-teal">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="calc-card">
+                    <h3 class="mb-4 text-center">Enter Project Details</h3>
+
+               
+                    <div class="mb-4">
+                        <label class="form-label" for="clientType">Client Type</label>
+                        <select id="clientType" class="form-select">
+                            <option value="new">New Client</option>
+                            <option value="loyal">Loyal Client (3+ past projects) — 15% discount</option>
+                            <option value="student">Student / NGO — 10% discount</option>
+                        </select>
+                    </div>
+
+                  
+                    <div class="mb-4">
+                        <label class="form-label" for="shootDays">Number of Shooting Days</label>
+                        <input type="number" id="shootDays" class="form-control" value="1" min="1" max="60" />
+                    </div>
+
+                 
+                    <div class="mb-4">
+                        <label class="form-label" for="crewSize">Crew Size</label>
+                        <select id="crewSize" class="form-select">
+                            <option value="small">Small (2–4 people) — OMR 120/day</option>
+                            <option value="medium">Medium (5–8 people) — OMR 220/day</option>
+                            <option value="large">Large (9+ people) — OMR 380/day</option>
+                        </select>
+                    </div>
+
+          
+                    <div class="mb-4">
+                        <label class="form-label" for="equipPackage">Equipment Package</label>
+                        <select id="equipPackage" class="form-select">
+                            <option value="basic">Basic (camera + tripod) — OMR 150</option>
+                            <option value="standard">Standard (+ gimbal + audio) — OMR 350</option>
+                            <option value="premium">Premium (+ drone + lighting) — OMR 700</option>
+                        </select>
+                    </div>
+
+                 
+                    <div class="mb-4">
+                        <label class="form-label" for="postProd">Post-Production Level</label>
+                        <select id="postProd" class="form-select">
+                            <option value="basic">Basic Edit — OMR 100</option>
+                            <option value="standard">Standard (colour grade + audio mix) — OMR 250</option>
+                            <option value="premium">Premium (VFX + motion graphics) — OMR 500</option>
+                        </select>
+                    </div>
+
+                   
+                    <div class="mb-4">
+                        <label class="form-label d-block">Optional Add-ons</label>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="addDrone"  value="200"/><label class="form-check-label" for="addDrone">Aerial Drone (extra day) — OMR 200</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="addSubs"   value="80" /><label class="form-check-label" for="addSubs">Subtitles (Arabic + English) — OMR 80</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="addSocial" value="120"/><label class="form-check-label" for="addSocial">Social Media Cut (30s + 60s) — OMR 120</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="addBTS"    value="150"/><label class="form-check-label" for="addBTS">Behind-the-Scenes Package — OMR 150</label></div>
+                    </div>
+
+                  
+                    <div class="text-center">
+                        <input type="button" class="btn btn-warning btn-lg px-5" value="Calculate Estimate" onclick="calculateCost()" />
+                        <input type="button" class="btn btn-outline-light btn-lg px-4 ms-2" value="Clear" onclick="clearCalc()" />
+                    </div>
+
+                  
+                    <div class="result-box" id="resultBox">
+                        <h4 class="text-center mb-4">&#128203; Cost Breakdown</h4>
+                        <div class="result-row"><span>Crew cost (days &times; daily rate):</span><span id="rCrew"></span></div>
+                        <div class="result-row"><span>Equipment package:</span><span id="rEquip"></span></div>
+                        <div class="result-row"><span>Post-production:</span><span id="rPost"></span></div>
+                        <div class="result-row"><span>Add-ons total:</span><span id="rAddons"></span></div>
+                        <div class="result-row"><span>Subtotal:</span><span id="rSubtotal"></span></div>
+                        <div class="result-row" id="discountRow" style="display:none;">
+                            <span>Discount <span class="discount-badge" id="discountLabel"></span>:</span>
+                            <span id="rDiscount" class="text-success"></span>
+                        </div>
+                        <div class="result-row"><span>After discount:</span><span id="rAfterDiscount"></span></div>
+                        <div class="result-row"><span>VAT (5%):</span><span id="rVAT"></span></div>
+                        <div class="result-row total-row"><span>TOTAL ESTIMATE:</span><span id="rTotal"></span></div>
+                        <p class="text-center mt-4 text-secondary" style="font-size:0.85rem;">* Estimate only. Final price subject to project scope.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* 
+   This JavaScript is for the calculator page.
+   It helps calculate the total cost based on the user's choices.
+   It uses simple things like variables, functions, if-else, and math.
+ */
+
+/* 
+   These are the daily crew prices.
+   Each crew size has its own price for one day.
+*/
+var crewRates = {
+    "small":  120,
+    "medium": 220,
+    "large":  380
+};
+
+/* These are the fixed prices for equipment packages */
+var equipCosts = {
+    "basic":    150,
+    "standard": 350,
+    "premium":  700
+};
+
+/* These are the fixed prices for post-production packages */
+var postCosts = {
+    "basic":    100,
+    "standard": 250,
+    "premium":  500
+};
+
+
+   /* This function does the full cost calculation.
+   It runs when the user clicks the calculate button. */
+   
+function calculateCost() {
+
+    /* Here I get the values that the user selected or typed */
+    var clientType = document.getElementById("clientType").value;
+    var days       = parseInt(document.getElementById("shootDays").value);
+    var crewKey    = document.getElementById("crewSize").value;
+    var equipKey   = document.getElementById("equipPackage").value;
+    var postKey    = document.getElementById("postProd").value;
+
+    /* This checks if the number of days is valid */
+    if (isNaN(days) || days < 1) {
+        alert("Please enter a valid number of shooting days (minimum 1).");
+        document.getElementById("shootDays").focus();
+        return;
+    }
+
+    /* Here I get the matching prices from the objects above */
+    var dailyRate = crewRates[crewKey];
+    var equipCost = equipCosts[equipKey];
+    var postCost  = postCosts[postKey];
+
+    /* Crew cost = daily crew rate × number of days */
+    var crewCost = dailyRate * days;
+
+    /* This part checks the add-ons.
+       If the checkbox is ticked, its value gets added to the total */
+    var addonTotal = 0;
+    var addonIds   = ["addDrone", "addSubs", "addSocial", "addBTS"];
+    for (var i = 0; i < addonIds.length; i++) {
+        var cb = document.getElementById(addonIds[i]);
+        if (cb.checked) {
+            addonTotal = addonTotal + parseInt(cb.value); /* add selected add-on price */
+        }
+    }
+
+    /* Subtotal means all the main costs added together before discount and VAT */
+    var subtotal = crewCost + equipCost + postCost + addonTotal;
+
+    /* This part checks the client type and gives discount if needed
+       Loyal clients get 15%
+       Students / NGOs get 10%
+       New clients get no discount */
+    var discountRate  = 0;
+    var discountLabel = "";
+
+    if (clientType == "loyal") {
+        discountRate  = 0.15;  /* loyal client discount */
+        discountLabel = "15% Loyalty";
+    } else if (clientType == "student") {
+        discountRate  = 0.10;  /* student or NGO discount */
+        discountLabel = "10% Student/NGO";
+    } else {
+        discountRate  = 0;     /* no discount */
+    }
+
+    /* Here I calculate how much discount should be taken off */
+    var discountAmount = subtotal * discountRate;
+
+    /* This gives the amount after removing the discount */
+    var afterDiscount = subtotal - discountAmount;
+
+    /* VAT is 5% and it is added after the discount */
+    var vatAmount = afterDiscount * 0.05;
+
+    /* Final total = amount after discount + VAT */
+    var grandTotal = afterDiscount + vatAmount;
+
+    /* This shows all the results on the page */
+    document.getElementById("rCrew").innerHTML          = "OMR " + crewCost.toFixed(3);
+    document.getElementById("rEquip").innerHTML         = "OMR " + equipCost.toFixed(3);
+    document.getElementById("rPost").innerHTML          = "OMR " + postCost.toFixed(3);
+    document.getElementById("rAddons").innerHTML        = "OMR " + addonTotal.toFixed(3);
+    document.getElementById("rSubtotal").innerHTML      = "OMR " + subtotal.toFixed(3);
+    document.getElementById("rAfterDiscount").innerHTML = "OMR " + afterDiscount.toFixed(3);
+    document.getElementById("rVAT").innerHTML           = "OMR " + vatAmount.toFixed(3);
+    document.getElementById("rTotal").innerHTML         = "OMR " + grandTotal.toFixed(3);
+
+    /* If there is a discount, show the discount row.
+       If not, hide it */
+    if (discountRate > 0) {
+        document.getElementById("discountRow").style.display   = "flex";
+        document.getElementById("rDiscount").innerHTML         = "- OMR " + discountAmount.toFixed(3);
+        document.getElementById("discountLabel").innerHTML     = discountLabel;
+    } else {
+        document.getElementById("discountRow").style.display   = "none";
+    }
+
+    /* This makes the result box appear after calculation */
+    document.getElementById("resultBox").style.display = "block";
+}
+
+/* 
+   This function clears part of the calculator.
+   It hides the result box and sets shooting days back to 1.
+ */
+function clearCalc() {
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("shootDays").value         = "1";
+}
+</script>
+</body>
+</html>
