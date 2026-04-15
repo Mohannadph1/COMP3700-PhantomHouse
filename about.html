@@ -5,64 +5,64 @@
     <meta name="description" content="About Phantom House" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | About Us</title>
-    <link rel="stylesheet" href="style.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     <style>
-        
-        .about-email-box{
-            margin-top: 20px;
-            padding: 15px;
-            background-color: rgba(255,255,255,0.10);
-            border-left: 4px solid #ffd6b8;
-        }
-
-        .about-email-box a{
-            font-weight: bold;
-        }
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .hero { min-height:380px; background-image:url('about-hero.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:60px 20px; }
+        .hero h1 { font-size:3rem; color:#fff; text-shadow:2px 2px 8px rgba(0,0,0,0.7); }
+        .section-teal { background-color:var(--teal); padding:55px 0; }
+        .info-box { background-color:rgba(255,255,255,0.08); padding:25px; border:1px solid rgba(255,255,255,0.1); border-radius:8px; }
+        .about-email-box { margin-top:20px; padding:15px; background-color:rgba(255,255,255,0.10); border-left:4px solid var(--gold); border-radius:4px; }
+        .service-list { margin-left:24px; margin-top:15px; }
+        .service-list li { margin-bottom:6px; }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
     </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="current">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
         </div>
     </div>
-
-    <div class="hero" style="background-image: url('about-hero.jpg');" >
-        <h1>Our Story</h1>
-    </div>
-
-    <div class="section-teal" >
-        <div class="container clearfix">
-            <div class="col-2">
-                <img src="about-logo.jpg" alt="Phantom House Logo" />
+</nav>
+<div class="hero"><div><h1>Our Story</h1></div></div>
+<section class="section-teal">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-5">
+                <img src="about-logo.jpg" alt="Phantom House Logo" class="img-fluid rounded" />
             </div>
-            <div class="col-2">
+            <div class="col-12 col-md-7">
                 <div class="info-box">
-                    <h2 class="sub-title">Who We Are</h2>
+                    <h2 class="text-center mb-3">Who We Are</h2>
                     <p>Phantom House is a cinematic production company focused on high-quality films, visual storytelling, and strong creative direction.</p>
                     <p>We develop meaningful work that reflects originality, professionalism, and the visual identity of Oman.</p>
                     <p>Our team believes every idea can become a powerful visual story through planning, filming, editing, and thoughtful presentation.</p>
-
                     <div class="about-email-box">
-                        <p>General inquiries:
-                            <a href="mailto:phantomhouse.media@gmail.com">phantomhouse.media@gmail.com</a>
-                        </p>
+                        <p>General inquiries: <a href="mailto:phantomhouse.media@gmail.com" class="text-warning">phantomhouse.media@gmail.com</a></p>
                     </div>
-
                     <ul class="service-list">
                         <li>Creative visual direction</li>
                         <li>Professional storytelling</li>
@@ -72,10 +72,8 @@
             </div>
         </div>
     </div>
-
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
-
+</section>
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
