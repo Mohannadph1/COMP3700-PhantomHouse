@@ -6,81 +6,175 @@
     <meta name="keywords" content="Phantom House, film, production, portfolio, Oman" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Home</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .hero { min-height:560px; background-image:url('home-hero.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 20px; }
+        .hero h1 { font-size:3.4rem; color:rgb(146,122,122); margin-bottom:14px; }
+        .hero p  { font-size:1.2rem; font-weight:700; color:rgb(122,96,96); max-width:700px; margin:auto; }
+        .section-maroon { background-color:var(--maroon); padding:55px 0; }
+        .section-teal   { background-color:var(--teal); padding:55px 0; }
+        .ph-card { text-align:center; }
+        .ph-card img { width:100%; height:280px; object-fit:cover; border:2px solid rgba(255,255,255,0.12); }
+        .ph-card h3  { margin-top:14px; font-size:1.5rem; }
+        .quote { font-size:1.3rem; font-weight:700; font-style:italic; max-width:900px; margin:auto; text-align:center; }
+        #photoGallery .carousel-item img { width:100%; height:420px; object-fit:cover; }
+        .scroll-banner { background-color:var(--maroon-dark); color:var(--gold); padding:12px 0; overflow:hidden; border-top:2px solid var(--gold); }
+        .scroll-banner-inner { display:inline-block; white-space:nowrap; animation:scrollLeft 30s linear infinite; font-size:1rem; font-weight:700; letter-spacing:1px; }
+        @keyframes scrollLeft { from{transform:translateX(100vw)} to{transform:translateX(-100%)} }
+        .quick-card { background-color:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:30px 20px; text-align:center; transition:background 0.3s; height:100%; }
+        .quick-card:hover { background-color:rgba(255,255,255,0.14); }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+    </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box">
-                <div class="logo">PHANTOM HOUSE</div>
-            </div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html" class="current">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <div class="hero" id="home-hero" style="background-image: url('home-hero.jpg');">
-        <h1 style="color: rgb(146, 122, 122);">WELCOME TO<br />PHANTOM<br />[HOUSE]</h1>
-        <p style="color: rgb(122, 96, 96);">Where stories, vision, and cinematic identity come together.</p>
+
+<div class="hero">
+    <div>
+        <h1>WELCOME TO<br/>PHANTOM<br/>[HOUSE]</h1>
+        <p>Where stories, vision, and cinematic identity come together.</p>
     </div>
+</div>
 
-    <div class="section-maroon">
-        <div class="container clearfix">
-            <div class="col-3">
-                <div class="card">
-                    <img src="home1.jpg" alt="Event Legacy" />
-                    <h3>Event Legacy</h3>
-                    <p>Where every moment becomes part of a story.</p>
+
+<section class="section-maroon">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-4"><div class="ph-card"><img src="home1.jpg" alt="Event Legacy"/><h3>Event Legacy</h3><p>Where every moment becomes part of a story.</p></div></div>
+            <div class="col-12 col-md-4"><div class="ph-card"><img src="home2.jpg" alt="Creative Force"/><h3>Creative Force</h3><p>United by vision, driven by cinematic excellence.</p></div></div>
+            <div class="col-12 col-md-4"><div class="ph-card"><img src="home3.jpg" alt="Mystic Atmosphere"/><h3>Mystic Atmosphere</h3><p>Where mystery meets cinematic beauty.</p></div></div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section-maroon border-top border-secondary">
+    <div class="container py-2">
+        <blockquote class="quote">"Where vision, creativity, and unforgettable moments come together to craft powerful cinematic stories."</blockquote>
+    </div>
+</section>
+
+
+<section class="section-teal">
+    <div class="container">
+        <h2 class="text-center mb-4">Our Work in Focus</h2>
+        <div id="photoGallery" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#photoGallery" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#photoGallery" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#photoGallery" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                    <img src="home1.jpg" class="d-block w-100" alt="Event Legacy"/>
+                    <div class="carousel-caption d-none d-md-block"><h5>Event Legacy</h5></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="home2.jpg" class="d-block w-100" alt="Creative Force"/>
+                    <div class="carousel-caption d-none d-md-block"><h5>Creative Force</h5></div>
+                </div>
+                <div class="carousel-item">
+                    <img src="home3.jpg" class="d-block w-100" alt="Mystic Atmosphere"/>
+                    <div class="carousel-caption d-none d-md-block"><h5>Mystic Atmosphere</h5></div>
                 </div>
             </div>
-
-            <div class="col-3">
-                <div class="card">
-                    <img src="home2.jpg" alt="Creative Force" />
-                    <h3>Creative Force</h3>
-                    <p>United by vision, driven by cinematic excellence.</p>
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card">
-                    <img src="home3.jpg" alt="Mystic Atmosphere" />
-                    <h3>Mystic Atmosphere</h3>
-                    <p>Where mystery meets cinematic beauty.</p>
-                </div>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#photoGallery" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+            <button class="carousel-control-next" type="button" data-bs-target="#photoGallery" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
         </div>
     </div>
+</section>
 
-    <div class="section-maroon">
-        <div class="container">
-            <blockquote class="quote">
-                “Where vision, creativity, and unforgettable moments come together to craft powerful cinematic stories.”
-            </blockquote>
+
+<section class="section-maroon">
+    <div class="container">
+        <h2 class="text-center mb-4">Explore More</h2>
+        <div class="row g-4">
+            <div class="col-12 col-md-4"><div class="quick-card"><h4>&#128172; Share Your Feedback</h4><p>Tell us about your experience with Phantom House.</p><a href="questionnaire.html" class="btn btn-outline-light btn-sm mt-2">Go to Questionnaire</a></div></div>
+            <div class="col-12 col-md-4"><div class="quick-card"><h4>&#128176; Project Calculator</h4><p>Estimate the cost of your next cinematic project.</p><a href="calculator.html" class="btn btn-outline-light btn-sm mt-2">Go to Calculator</a></div></div>
+            <div class="col-12 col-md-4"><div class="quick-card"><h4>&#127918; Cinema Quiz</h4><p>Test your knowledge of cinematic terms!</p><a href="funpage.html" class="btn btn-outline-light btn-sm mt-2">Go to Fun Page</a></div></div>
         </div>
     </div>
+</section>
 
-    <div class="section-teal">
-        <div class="container center">
-            <h2 class="sub-title">Phantom House — Where stories come to life.</h2>
-            <p><em>Emotion</em> | <em>Passion</em> | <em>Inspiration</em> | <em>Mastery</em></p>
-        </div>
+
+<section class="section-teal text-center py-4">
+    <div class="container">
+        <h2 class="fs-4">Phantom House — Where stories come to life.</h2>
+        <p class="mt-2"><em>Emotion</em> &nbsp;|&nbsp; <em>Passion</em> &nbsp;|&nbsp; <em>Inspiration</em> &nbsp;|&nbsp; <em>Mastery</em></p>
     </div>
+</section>
 
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
+<div class="scroll-banner">
+    <span class="scroll-banner-inner" id="bannerText">Welcome to the Phantom House website!</span>
+</div>
 
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    /* 
+       This script updates the scrolling banner with the current
+       date and time. It keeps changing every second so the banner
+       always shows the latest time.
+   */
+    function updateBanner() {
+        var now    = new Date();
+        var days   = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+        /* Here I make the date look like:
+           Wednesday, 9 April 2026 */
+        var dateStr = days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear();
+
+        /* Here I make the time show in hours, minutes, and seconds */
+        var hh = String(now.getHours()).padStart(2,"0");
+        var mm = String(now.getMinutes()).padStart(2,"0");
+        var ss = String(now.getSeconds()).padStart(2,"0");
+        var timeStr = hh + ":" + mm + ":" + ss;
+
+        /* This puts the welcome message, date, and time into the banner */
+        document.getElementById("bannerText").innerHTML =
+            "&#9733; Welcome to the Phantom House website! &nbsp;&nbsp;&nbsp; Today is " +
+            dateStr + ", and the time is " + timeStr +
+            " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#127916; Where vision meets cinema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    }
+
+    /* Run the function once at the start, then repeat it every second */
+    updateBanner();
+    setInterval(updateBanner, 1000);
+</script>
 </body>
 </html>
