@@ -2,97 +2,295 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Phantom House equipment and technology" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Equipment</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .hero { min-height:380px; background-image:url('equipment-hero.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:60px 20px; }
+        .hero h1 { font-size:3rem; color:#fff; text-shadow:2px 2px 8px rgba(0,0,0,0.7); }
+        .section-maroon { background-color:var(--maroon); padding:50px 0; }
+        .section-teal   { background-color:var(--teal); padding:50px 0; }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+        .search-result-box { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:6px; padding:15px; margin-top:12px; min-height:44px; }
+        .form-label { color:var(--gold) !important; font-weight:600; }
+        .form-check-label { color:#eee !important; }
+        .card.bg-dark .form-label { color:var(--gold) !important; font-weight:600; }
+        .card.bg-dark label { color:var(--gold) !important; font-weight:600; }
+        .card.bg-dark .form-check-label { color:#eee !important; font-weight:400; }
+        .card.bg-dark h3, .card.bg-dark h5 { color:#fff !important; }
+    </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html" class="current">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link active" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <div class="hero" style="background-image: url('equipment-hero.jpg');">
-        <h1>The Technology Behind the Vision</h1>
-    </div>
-
-    <div class="section-maroon">
-        <div class="container">
-            <p>Behind every cinematic frame lies the power of the right tools. Phantom House relies on professional equipment to capture strong visuals, stable movement, and high-quality cinematic detail.</p>
-        </div>
-    </div>
-
-    <div class="section-maroon">
-        <div class="container clearfix">
-            <div class="col-2 center">
-    <img src="equipment1.jpg" alt="Camera lens" />
-    <p>Camera Lens</p>
+<div class="hero">
+    <div><h1>The Technology Behind the Vision</h1></div>
 </div>
-            <div class="col-2 center">
-    <img src="equipment2.jpg" alt="Landscape camera result" />
-    <p>Editing & Post Production</p>
-</div>
+
+<section class="section-maroon">
+    <div class="container">
+        <p class="lead text-center">Behind every cinematic frame lies the power of the right tools. Phantom House relies on professional equipment to capture strong visuals, stable movement, and high-quality cinematic detail.</p>
+    </div>
+</section>
+
+<section class="section-maroon border-top border-secondary">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-5 text-center"><img src="equipment1.jpg" alt="Camera Lens" class="img-fluid rounded"/><p class="mt-2 fw-bold">Camera Lens</p></div>
+            <div class="col-12 col-md-5 text-center"><img src="equipment2.jpg" alt="Editing" class="img-fluid rounded"/><p class="mt-2 fw-bold">Editing &amp; Post Production</p></div>
         </div>
     </div>
+</section>
 
-    <div class="section-teal">
-        <div class="container">
-            <h2 class="section-title">Equipment Table</h2>
-            <table>
-                <tr>
-                    <th>Type</th>
-                    <th>Examples</th>
-                    <th>Purpose</th>
-                </tr>
-                <tr>
-                    <td>Cameras</td>
-                    <td>ARRI, RED, Sony</td>
-                    <td>High-quality cinematic capture</td>
-                </tr>
-                <tr>
-                    <td>Lenses</td>
-                    <td>Zeiss</td>
-                    <td>Sharp visual depth and composition</td>
-                </tr>
-                <tr>
-                    <td>Stabilization</td>
-                    <td>Gimbals</td>
-                    <td>Smooth camera movement</td>
-                </tr>
-                <tr>
-                    <td>Aerial Systems</td>
-                    <td>DJI</td>
-                    <td>Drone and elevated shots</td>
-                </tr>
+
+<section class="section-teal">
+    <div class="container">
+        <h2 class="text-center mb-4">Equipment Inventory</h2>
+
+        
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-hover text-center" id="equipmentTable">
+                <thead class="table-warning text-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Model / Example</th>
+                        <th>Purpose</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="equipmentBody">
+                    
+                </tbody>
             </table>
         </div>
-    </div>
 
-    <div class="section-maroon">
-    <div class="container center">
-        <img src="equipment3.jpg" alt="Behind the scenes" />
-        <p>Behind The Scenes Production</p>
-    </div>
-</div>
+        
+        <div class="card bg-dark border-secondary mt-4 p-4">
+            <h5 class="mb-3">&#128269; Search Equipment</h5>
+            <div class="row g-2 align-items-end">
+                <div class="col-12 col-md-8">
+                    <label for="eqSearch" class="form-label">Enter type or purpose keyword:</label>
+                    <input type="text" id="eqSearch" class="form-control bg-dark text-white border-secondary" placeholder="e.g. Camera, Drone..." />
+                </div>
+                <div class="col-12 col-md-4">
+                    <button class="btn btn-warning w-100" onclick="searchEquipment()">Search</button>
+                </div>
+            </div>
+            <div class="search-result-box mt-3" id="eqSearchResult">Results will appear here.</div>
+        </div>
 
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
+       
+        <div class="card bg-dark border-secondary mt-4 p-4">
+            <h5 class="mb-3">&#43; Add New Equipment</h5>
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Type</label>
+                    <input type="text" id="newEqType"     class="form-control bg-dark text-white border-secondary" placeholder="e.g. Lighting" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Model / Example</label>
+                    <input type="text" id="newEqModel"    class="form-control bg-dark text-white border-secondary" placeholder="e.g. Aputure 600D" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Purpose</label>
+                    <input type="text" id="newEqPurpose"  class="form-control bg-dark text-white border-secondary" placeholder="e.g. Professional lighting" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" id="newEqQty"    class="form-control bg-dark text-white border-secondary" placeholder="e.g. 2" min="1" />
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-success" onclick="addEquipment()">Add to Table</button>
+                    <span id="eqAddMsg" class="ms-3 text-success fw-bold"></span>
+                </div>
+            </div>
+        </div>
 
+    </div>
+</section>
+
+
+<section class="section-maroon">
+    <div class="container text-center">
+        <img src="equipment3.jpg" alt="Behind the scenes" class="img-fluid rounded" style="max-height:400px;object-fit:cover;"/>
+        <p class="mt-3 fw-bold">Behind The Scenes Production</p>
+    </div>
+</section>
+
+
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/*
+   This JavaScript is for the equipment page.
+   It is used to store equipment data, show it in a table,
+   add new equipment, and search for equipment.
+*/
+
+/*
+   Here I made a constructor for Equipment objects.
+   Each equipment item will have a type, model, purpose, and quantity.
+*/
+function Equipment(type, model, purpose, quantity) {
+    this.type     = type;
+    this.model    = model;
+    this.purpose  = purpose;
+    this.quantity = quantity;
+}
+
+/*
+   This array stores the starting equipment data.
+   Each item inside it is an Equipment object.
+ */
+var equipmentArray = [
+    new Equipment("Cameras",          "ARRI Alexa Mini LF",   "High-quality cinematic capture",       3),
+    new Equipment("Cameras",          "RED Komodo 6K",         "Compact high-resolution cinema",       2),
+    new Equipment("Cameras",          "Sony FX9",              "Versatile documentary shooting",       2),
+    new Equipment("Lenses",           "Zeiss Supreme Primes",  "Sharp visual depth and composition",   6),
+    new Equipment("Stabilization",    "DJI RS 3 Pro Gimbal",   "Smooth handheld camera movement",      3),
+    new Equipment("Aerial Systems",   "DJI Inspire 3",         "Aerial and elevated drone shots",      2),
+    new Equipment("Audio",            "Rode NTG5 Shotgun",     "Clean on-location sound capture",      4),
+    new Equipment("Lighting",         "Aputure 600D Pro",      "Cinematic daylight-balanced lighting", 5)
+];
+
+/* 
+   This function shows the equipment in the table.
+   It can show the full array or a filtered array from search.
+*/
+function displayEquipment(dataArray) {
+    /* If no array is given, show all equipment */
+    if (!dataArray) { dataArray = equipmentArray; }
+
+    /* Get the table body from the HTML */
+    var tbody = document.getElementById("equipmentBody");
+
+    /* Clear old rows before showing new ones */
+    tbody.innerHTML = "";
+
+    /* Loop through each equipment item and make a table row */
+    for (var i = 0; i < dataArray.length; i++) {
+        var eq  = dataArray[i];
+        var row = document.createElement("tr");
+
+        /* Put the equipment details inside the row */
+        row.innerHTML =
+            "<td>" + (i + 1)        + "</td>" +
+            "<td>" + eq.type        + "</td>" +
+            "<td>" + eq.model       + "</td>" +
+            "<td>" + eq.purpose     + "</td>" +
+            "<td>" + eq.quantity    + "</td>";
+
+        tbody.appendChild(row); /* add the row into the table */
+    }
+}
+
+/* 
+   This function gets the values from the form,
+   makes a new equipment object, adds it to the array,
+   and updates the table.
+*/
+function addEquipment() {
+    /* Get the values entered by the user */
+    var type    = document.getElementById("newEqType").value.trim();
+    var model   = document.getElementById("newEqModel").value.trim();
+    var purpose = document.getElementById("newEqPurpose").value.trim();
+    var qty     = parseInt(document.getElementById("newEqQty").value);
+
+    /* Check that all fields are filled correctly */
+    if (!type || !model || !purpose || isNaN(qty) || qty < 1) {
+        document.getElementById("eqAddMsg").textContent = "Please fill in all fields correctly.";
+        document.getElementById("eqAddMsg").className   = "ms-3 text-danger fw-bold";
+        return;
+    }
+
+    /* Make a new equipment object and add it into the array */
+    var newEq = new Equipment(type, model, purpose, qty);
+    equipmentArray.push(newEq);
+
+    /* Show the table again so the new item appears */
+    displayEquipment();
+
+    /* Clear the form after adding */
+    document.getElementById("newEqType").value    = "";
+    document.getElementById("newEqModel").value   = "";
+    document.getElementById("newEqPurpose").value = "";
+    document.getElementById("newEqQty").value     = "";
+
+    /* Show a success message */
+    document.getElementById("eqAddMsg").textContent = "Equipment added successfully!";
+    document.getElementById("eqAddMsg").className   = "ms-3 text-success fw-bold";
+}
+
+/* 
+   This function searches the equipment array using a keyword.
+   It shows only the matching results in the table.
+ */
+function searchEquipment() {
+    /* Get the keyword from the search box and make it lowercase */
+    var keyword = document.getElementById("eqSearch").value.trim().toLowerCase();
+    var resultBox = document.getElementById("eqSearchResult");
+
+    /* If the search box is empty, show all equipment */
+    if (!keyword) {
+        displayEquipment();
+        resultBox.innerHTML = "<span class='text-warning'>Showing all equipment.</span>";
+        return;
+    }
+
+    /* Make a new array for matching items */
+    var filtered = [];
+    for (var i = 0; i < equipmentArray.length; i++) {
+        var eq = equipmentArray[i];
+        if (eq.type.toLowerCase().indexOf(keyword)    !== -1 ||
+            eq.purpose.toLowerCase().indexOf(keyword) !== -1 ||
+            eq.model.toLowerCase().indexOf(keyword)   !== -1) {
+            filtered.push(eq);
+        }
+    }
+
+    /* Show the search results or show not found message */
+    if (filtered.length > 0) {
+        displayEquipment(filtered);
+        resultBox.innerHTML = "<span class='text-success'>Found <strong>" + filtered.length + "</strong> result(s) for <em>\"" + keyword + "\"</em>.</span>";
+    } else {
+        displayEquipment([]); /* show empty table */
+        resultBox.innerHTML = "<span class='text-danger'>No equipment found matching <em>\"" + keyword + "\"</em>.</span>";
+    }
+}
+
+/* Show the equipment table as soon as the page loads */
+displayEquipment();
+</script>
 </body>
 </html>
