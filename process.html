@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Phantom House production process" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phantom House | Production Process</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Process</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root{--maroon-dark:#260b04;--maroon:#5a1200;--teal:#145b61;--gold:#ffd6b8;}
+        body{font-family:'Lato',Arial,sans-serif;background-color:var(--maroon-dark);color:#eee;border:8px solid rgba(26,3,3,0.815);}
+        h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+        .navbar{background-color:rgba(0,0,0,0.75)!important;}
+        .navbar-brand{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:2px;color:#fff!important;}
+        .nav-link{color:rgba(255,255,255,0.85)!important;}.nav-link:hover,.nav-link.active{color:var(--gold)!important;text-decoration:underline;}
+        .hero{min-height:380px;background-image:url('process-hero.jpg');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;}
+        .hero h1{font-size:3rem;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.7);}
+        .section-maroon{background-color:var(--maroon);padding:55px 0;}
+        .section-teal{background-color:var(--teal);padding:55px 0;}
+        .step-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:25px;text-align:center;height:100%;}
+        .step-num{font-size:2.5rem;font-weight:900;color:var(--gold);}
+        .footer{background-color:var(--maroon-dark);text-align:center;padding:22px 10px;font-size:0.9rem;}
+    </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html" class="current">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link active" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
         </div>
     </div>
-
-    <div class="hero" style="background-image: url('process-hero.jpg');">
-        <h1 style="color: rgb(0, 0, 0);">Production Process</h1>
-        <p style="color: rgba(248, 248, 248, 0.801);">From concept planning to final cinematic delivery, every detail is organized carefully.</p>
-    </div>
-
-    <div class="section-maroon">
-        <div class="container">
-            <div class="info-box center">
-                <p>Our production journey begins with concept development, mood boards, references, and shot planning. Then we move to filming using professional equipment and strong visual direction. Finally, we refine the story in post-production through editing, sound design, and color grading.</p>
-                <p><strong class="accent">Milanote</strong> is used as a planning space to organize creative ideas and production flow.</p>
-            </div>
+</nav>
+<div class="hero"><div><h1>Our Process</h1></div></div>
+<section class="section-teal">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-md-3"><div class="step-box"><div class="step-num">01</div><h3>Concept</h3><p>Understanding your vision and defining the story to tell.</p></div></div>
+            <div class="col-12 col-md-3"><div class="step-box"><div class="step-num">02</div><h3>Pre-Production</h3><p>Script, location scouting, casting, and equipment preparation.</p></div></div>
+            <div class="col-12 col-md-3"><div class="step-box"><div class="step-num">03</div><h3>Production</h3><p>Principal photography — bringing the vision to life on camera.</p></div></div>
+            <div class="col-12 col-md-3"><div class="step-box"><div class="step-num">04</div><h3>Post-Production</h3><p>Editing, color grading, sound design, and final delivery.</p></div></div>
         </div>
     </div>
-
-    <div class="section-teal">
-        <div class="container center">
-            <img src="process.jpg" alt="Production board" />
-        </div>
+</section>
+<section class="section-maroon">
+    <div class="container text-center">
+        <img src="process.jpg" alt="Production process" class="img-fluid rounded" style="max-height:400px;object-fit:cover;" />
     </div>
-
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
-
+</section>
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
