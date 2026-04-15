@@ -2,65 +2,412 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Phantom House clients and collaborations" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Clients</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3,h4 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .hero { min-height:380px; background-image:url('clients-hero.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:60px 20px; }
+        .hero h1 { font-size:3rem; color:rgb(110,34,34); text-shadow:1px 1px 6px rgba(255,255,255,0.3); }
+        .section-maroon { background-color:var(--maroon); padding:50px 0; }
+        .section-teal   { background-color:var(--teal); padding:50px 0; }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+        .search-result-box { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:6px; padding:15px; margin-top:12px; min-height:44px; }
+        .form-label { color:var(--gold) !important; font-weight:600; }
+        .form-check-label { color:#eee !important; }
+        .card.bg-dark .form-label { color:var(--gold) !important; font-weight:600; }
+        .card.bg-dark label { color:var(--gold) !important; font-weight:600; }
+        .card.bg-dark .form-check-label { color:#eee !important; font-weight:400; }
+        .card.bg-dark h3, .card.bg-dark h5 { color:#fff !important; }
+    </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html" class="current">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link active" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="hero"><div><h1>Trusted Partnerships</h1></div></div>
+
+
+<section class="section-maroon">
+    <div class="container text-center">
+        <h2 class="mb-4">Fueling Our Vision Together</h2>
+        <img src="clients.jpg" alt="Client logos" class="img-fluid rounded" style="max-height:300px;object-fit:cover;"/>
+    </div>
+</section>
+
+
+<section class="section-teal">
+    <div class="container">
+        <h2 class="text-center mb-4">Our Client Portfolio</h2>
+
+       
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-hover text-center" id="clientsTable">
+                <thead class="table-warning text-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Client Name</th>
+                        <th>Sector</th>
+                        <th>Project Type</th>
+                        <th>Year</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="clientsBody">
+                   
+                </tbody>
+            </table>
+        </div>
+
+       
+        <div class="card bg-dark border-secondary mt-4 p-4">
+            <h5 class="mb-3">&#128269; Search Clients</h5>
+            <div class="row g-2 align-items-end">
+                <div class="col-12 col-md-8">
+                    <label for="clSearch" class="form-label">Enter client name, sector, or project type:</label>
+                    <input type="text" id="clSearch" class="form-control bg-dark text-white border-secondary" placeholder="e.g. Government, Documentary..." />
+                </div>
+                <div class="col-12 col-md-4">
+                    <button class="btn btn-warning w-100" onclick="searchClients()">Search</button>
+                </div>
+            </div>
+            <div class="search-result-box mt-3" id="clSearchResult">Results will appear here.</div>
+        </div>
+
+        
+        <div class="card bg-dark border-secondary mt-4 p-4">
+            <h5 class="mb-3">&#43; Add New Client</h5>
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Client Name</label>
+                    <input type="text" id="newClName"    class="form-control bg-dark text-white border-secondary" placeholder="e.g. Oman Tourism" />
+                </div>
+                <div class="col-12 col-md-6">
+                    <label class="form-label">Sector</label>
+                    <input type="text" id="newClSector"  class="form-control bg-dark text-white border-secondary" placeholder="e.g. Tourism" />
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Project Type</label>
+                    <input type="text" id="newClProject" class="form-control bg-dark text-white border-secondary" placeholder="e.g. Promotional Film" />
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Year</label>
+                    <input type="number" id="newClYear"  class="form-control bg-dark text-white border-secondary" placeholder="e.g. 2025" min="2000" max="2030" />
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label">Status</label>
+                    <select id="newClStatus" class="form-select bg-dark text-white border-secondary">
+                        <option value="Completed">Completed</option>
+                        <option value="Ongoing">Ongoing</option>
+                        <option value="Upcoming">Upcoming</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-success" onclick="addClient()">Add to Table</button>
+                    <button class="btn btn-outline-light ms-2" onclick="clearAddClientForm()">Clear</button>
+                    <span id="clAddMsg" class="ms-3 fw-bold"></span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="hero" style="background-image: url('clients-hero.jpg');">
-        <h1 style="color: rgb(110, 34, 34);">Trusted Partnerships</h1>
     </div>
+</section>
 
-    <div class="section-maroon">
-        <div class="container center">
-            <h2 class="section-title">Fueling Our Vision Together</h2>
-            <img src="clients.jpg" alt="Client logos" />
+
+<section class="section-maroon">
+    <div class="container">
+        <h2 class="text-center mb-4">Project Request Form</h2>
+        <div class="card bg-dark border-secondary p-4">
+            <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="fullname2">Full Name</label>
+                        <input type="text" id="fullname2" name="fullname2" class="form-control bg-dark text-white border-secondary" required />
+                        <div class="invalid-feedback">Please enter your name.</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="email2">Email</label>
+                        <input type="email" id="email2" name="email2" class="form-control bg-dark text-white border-secondary" required />
+                        <div class="invalid-feedback">Please enter a valid email.</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="date2">Preferred Date</label>
+                        <input type="date" id="date2" name="date2" class="form-control bg-dark text-white border-secondary" required />
+                        <div class="invalid-feedback">Please select a date.</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="project2">Project Type</label>
+                        <select id="project2" name="project2" class="form-select bg-dark text-white border-secondary">
+                            <option value="commercial">Commercial</option>
+                            <option value="event">Event Coverage</option>
+                            <option value="documentary">Documentary</option>
+                            <option value="creative_film">Creative Film</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Production Scale:</label>
+                        <div class="form-check"><input class="form-check-input" type="radio" name="scale" id="scale1" value="small"/><label class="form-check-label" for="scale1">Small</label></div>
+                        <div class="form-check"><input class="form-check-input" type="radio" name="scale" id="scale2" value="medium"/><label class="form-check-label" for="scale2">Medium</label></div>
+                        <div class="form-check"><input class="form-check-input" type="radio" name="scale" id="scale3" value="large"/><label class="form-check-label" for="scale3">Large</label></div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Required Extras:</label>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="extra1" name="drone" value="yes"/><label class="form-check-label" for="extra1">Drone Coverage</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="extra2" name="subtitles" value="yes"/><label class="form-check-label" for="extra2">Subtitles</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="extra3" name="social_cut" value="yes"/><label class="form-check-label" for="extra3">Social Media Cut</label></div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="brief2">Project Brief</label>
+                        <textarea id="brief2" name="brief2" class="form-control bg-dark text-white border-secondary" rows="4" placeholder="Describe your project..."></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-warning me-2">Submit</button>
+                        <button type="reset" class="btn btn-outline-light" onclick="this.closest('form').reset()">Reset</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+</section>
 
-    <div class="section-teal">
-        <div class="container">
-            <h2 class="section-title">Project Request Form</h2>
 
-            <form action="https://httpbin.org/get" method="get">
-                <fieldset>
-                    <legend>Your First Project</legend>
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
 
-                    <label for="fullname2">Name</label>
-                    <input type="text" id="fullname2" name="fullname2" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
 
-                    <label for="email2">Email</label>
-                    <input type="email" id="email2" name="email2" />
+/* 
+   This JavaScript is for the questionnaire form.
+   It checks if the user filled in the form correctly before submitting it.
+   It also shows error messages if something is missing or wrong.
+*/
 
-                    <label for="date2">Preferred Date</label>
-                    <input type="date" id="date2" name="date2" />
+/* 
+   This helper function shows an error message under a field.
+   If the message is empty, it clears the error.
+ */
+function showError(id, message) {
+    document.getElementById(id).innerHTML = message;
+}
 
-                    <label for="project2">Project Type</label>
-                    <select id="project2" name="project2">
-                        <option value="commercial">Commercial</option>
-                        <option value="event">Event Coverage</option>
-                        <option value="documentary">Documentary</option>
-                        <option value="creative_film">Creative Film</option>
+/* 
+   This helper function clears all old error messages
+   before the form is checked again.
+*/
+function clearAllErrors() {
+    /* Go through all the error message areas and make them empty */
+    var errorIds = ["errName", "errEmail", "errPhone", "errService", "errExp", "errComments", "errAgree"];
+    for (var i = 0; i < errorIds.length; i++) {
+        document.getElementById(errorIds[i]).innerHTML = "";
+    }
+}
+
+/* 
+   This is the main validation function.
+   It runs when the form is submitted.
+   It checks each field one by one and stops if something is wrong.
+*/
+function validateFeedback() {
+
+    clearAllErrors(); /* clear old errors first */
+
+    /* Get all the form fields from the page */
+    var nameField     = document.getElementById("fbName");
+    var emailField    = document.getElementById("fbEmail");
+    var phoneField    = document.getElementById("fbPhone");
+    var serviceField  = document.getElementById("fbService");
+    var commentsField = document.getElementById("fbComments");
+    var agreeField    = document.getElementById("fbAgree");
+
+    /* 
+       Check the full name.
+       It should not be empty, should only have letters and spaces,
+       and should be at least 3 characters long.
+    */
+    if (nameField.value == "") {
+        showError("errName", "Name is required.");
+        nameField.focus(); /* move the cursor to this field */
+        return false;
+    }
+    if (nameField.value.search(/^[A-Za-z\s]+$/) == -1) {
+        /* this checks if the name has only letters and spaces */
+        showError("errName", "Name must contain letters only (no numbers or symbols).");
+        nameField.focus();
+        return false;
+    }
+    if (nameField.value.length < 3) {
+        /* this checks the minimum length of the name */
+        showError("errName", "Name must be at least 3 characters long.");
+        nameField.focus();
+        return false;
+    }
+
+    /* 
+       Check the email address.
+       It should not be empty and must contain @ and .
+    */
+    if (emailField.value == "") {
+        showError("errEmail", "Email address is required.");
+        emailField.focus();
+        return false;
+    }
+    if (emailField.value.indexOf("@", 0) < 0) {
+        /* this checks if @ is inside the email */
+        showError("errEmail", "Please enter a valid email address (must contain @).");
+        emailField.focus();
+        return false;
+    }
+    if (emailField.value.indexOf(".", 0) < 0) {
+        /* this checks if . is inside the email */
+        showError("errEmail", "Please enter a valid email address (must contain .).");
+        emailField.focus();
+        return false;
+    }
+
+    /* 
+       Check the phone number.
+       It should not be empty and must be 8 digits,
+       starting with 9 or 7.
+    */
+    if (phoneField.value == "") {
+        showError("errPhone", "Phone number is required.");
+        phoneField.focus();
+        return false;
+    }
+    if (phoneField.value.search(/^[97]\d{7}$/) == -1) {
+        showError("errPhone", "Phone must be 8 digits and start with 9 or 7 (e.g. 91234567).");
+        phoneField.focus();
+        return false;
+    }
+
+    /* 
+       Check if the user selected a service from the dropdown.
+     */
+    if (serviceField.selectedIndex < 1) {
+        /* if it is still on the first option, nothing was selected */
+        showError("errService", "Please select the service you used.");
+        serviceField.focus();
+        return false;
+    }
+
+    /* 
+       Check the radio buttons for overall experience.
+       The user must choose one option.
+     */
+    var radios = document.forms["feedbackForm"]["fbExp"];
+    var expSelected = false;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            expSelected = true;
+            break;
+        }
+    }
+    if (!expSelected) {
+        showError("errExp", "Please select your overall experience rating.");
+        return false;
+    }
+
+    /* 
+       Check the comments box.
+       It should not be empty and must have at least 20 characters.
+     */
+    if (commentsField.value == "") {
+        showError("errComments", "Comments are required.");
+        commentsField.focus();
+        return false;
+    }
+    if (commentsField.value.length < 20) {
+        showError("errComments", "Comments must be at least 20 characters. You entered: " + commentsField.value.length + " characters.");
+        commentsField.focus();
+        return false;
+    }
+
+    /* 
+       Check if the agreement checkbox is ticked.
+    */
+    if (!agreeField.checked) {
+        showError("errAgree", "You must agree to the terms before submitting.");
+        return false;
+    }
+
+    /* If everything is correct, hide the form and show success message */
+    document.getElementById("feedbackFormDiv").style.display = "none";
+    document.getElementById("successBox").style.display      = "block";
+
+    return false; /* stop real form submission because there is no server */
+}
+
+/* 
+   This function clears the form manually.
+   It resets all fields, radio buttons, checkboxes, and errors.
+ */
+function clearFeedbackForm() {
+    /* Clear all text boxes and the comments area */
+    document.getElementById("fbName").value     = "";
+    document.getElementById("fbEmail").value    = "";
+    document.getElementById("fbPhone").value    = "";
+    document.getElementById("fbComments").value = "";
+
+    /* Reset the dropdown back to the first option */
+    document.getElementById("fbService").selectedIndex = 0;
+
+    /* Untick all radio buttons */
+    var radios = document.forms["feedbackForm"]["fbExp"];
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+
+    /* Untick all checkboxes */
+    var checkboxIds = ["chkProfessional", "chkCreativity", "chkDelivery", "chkQuality", "fbAgree"];
+    for (var i = 0; i < checkboxIds.length; i++) {
+        document.getElementById(checkboxIds[i]).checked = false;
+    }
+
+    /* Remove all old error messages */
+    clearAllErrors();
+}
+
+/* 
+   This function hides the success message
+   and shows the form again for another response.
+*/
+function resetForm() {
+    document.getElementById("successBox").style.display      = "none";
+    document.getElementById("feedbackFormDiv").style.display = "block";
+    clearFeedbackForm();
+}
+</script>
+</body>
+</html>                        <option value="creative_film">Creative Film</option>
                     </select>
 
                     <p><strong>Production scale:</strong></p>
