@@ -1,111 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Contact Phantom House" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phantom House | Contact Us</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phantom House | Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root{--maroon-dark:#260b04;--maroon:#5a1200;--teal:#145b61;--gold:#ffd6b8;}
+        body{font-family:'Lato',Arial,sans-serif;background-color:var(--maroon-dark);color:#eee;border:8px solid rgba(26,3,3,0.815);}
+        h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+        .navbar{background-color:rgba(0,0,0,0.75)!important;}
+        .navbar-brand{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:2px;color:#fff!important;}
+        .nav-link{color:rgba(255,255,255,0.85)!important;}.nav-link:hover,.nav-link.active{color:var(--gold)!important;text-decoration:underline;}
+        .hero{min-height:380px;background-image:url('contact-hero.jpg');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;}
+        .hero h1{font-size:3rem;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.7);}
+        .section-teal{background-color:var(--teal);padding:55px 0;}
+        .form-control,.form-select{background-color:rgba(255,255,255,0.08)!important;color:#fff!important;border-color:rgba(255,255,255,0.25)!important;}
+        .form-label{color:var(--gold);font-weight:600;}
+        .footer{background-color:var(--maroon-dark);text-align:center;padding:22px 10px;font-size:0.9rem;}
+    </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html" class="current">Contact</a></li>
-                </ul>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="hero"><div><h1>Contact Us</h1></div></div>
+<section class="section-teal">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-5">
+                <h2 class="mb-3">Get in Touch</h2>
+                <p>&#128205; Muscat, Oman</p>
+                <p>&#128231; <a href="mailto:phantomhouse.media@gmail.com" class="text-warning">phantomhouse.media@gmail.com</a></p>
+                <img src="map.jpg" alt="Map" class="img-fluid rounded mt-3" />
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card bg-dark border-secondary p-4">
+                    <h3 class="mb-3">Send a Message</h3>
+                    <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+                        <div class="mb-3"><label class="form-label" for="cName">Name</label><input type="text" id="cName" name="name" class="form-control" required/><div class="invalid-feedback">Please enter your name.</div></div>
+                        <div class="mb-3"><label class="form-label" for="cEmail">Email</label><input type="email" id="cEmail" name="email" class="form-control" required/><div class="invalid-feedback">Please enter a valid email.</div></div>
+                        <div class="mb-3"><label class="form-label" for="cMsg">Message</label><textarea id="cMsg" name="message" class="form-control" rows="5" required></textarea><div class="invalid-feedback">Please enter a message.</div></div>
+                        <button type="submit" class="btn btn-warning">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="hero" style="background-image: url('contact-hero.jpg');">
-        <h1>Where Stories Begin</h1>
-        <p style="color: rgb(255, 245, 245);">Reach out to us for inquiries, collaboration, and bookings.</p>
-    </div>
-
-    <div class="section-maroon">
-        <div class="container center">
-            <img src="map.jpg" alt="Map location" />
-        </div>
-    </div>
-
-    <div class="section-maroon">
-        <div class="container clearfix">
-            <div class="col-2 center">
-                <img src="ahmed.jpg" alt="Ahmed Alhinai" />
-                <h2 class="sub-title">Ahmed Alhinai</h2>
-                <p>Email: s140513@student.squ.edu.om</p>
-                <p>Phone: 91174533</p>
-                <p>Address: SQU</p>
-            </div>
-            <div class="col-2 center">
-                <img src="mohannad.jpg" alt="Mohannad Albalushi" />
-                <h2 class="sub-title">Mohannad Albalushi</h2>
-                <p>Email: s152995@student.squ.edu.om</p>
-                <p>Phone: 92650950</p>
-                <p>Address: SQU</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="section-teal">
-        <div class="container">
-            <h2 class="section-title">Contact Us Form</h2>
-
-            <form action="mailto:phantomhouse.media@gmail.com" method="post" enctype="text/plain">
-                <fieldset>
-                    <legend>Send a Direct Message</legend>
-
-                    <label for="sendername">Name</label>
-                    <input type="text" id="sendername" name="sendername" />
-
-                    <label for="senderemail">Email</label>
-                    <input type="email" id="senderemail" name="senderemail" />
-
-                    <label for="subjectline">Subject</label>
-                    <input type="text" id="subjectline" name="subjectline" />
-
-                    <label for="messagebox">Message</label>
-                    <textarea id="messagebox" name="messagebox" rows="6" cols="40"></textarea>
-
-                    <input type="submit" value="Send Email Form" />
-                    <input type="reset" value="Clear Form" />
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
-    <div class="section-teal">
-        <div class="container">
-            <h2 class="section-title">Hours of Operation</h2>
-            <table>
-                <tr>
-                    <th>Day</th>
-                    <th>Hours</th>
-                </tr>
-                <tr><td>Monday</td><td>8:00 PM  12:00 AM</td></tr>
-                <tr><td>Tuesday</td><td>8:00 PM  12:00 AM</td></tr>
-                <tr><td>Wednesday</td><td>8:00 PM  12:00 AM</td></tr>
-                <tr><td>Thursday</td><td>8:00 PM  12:00 AM</td></tr>
-                <tr><td>Friday</td><td>Closed</td></tr>
-                <tr><td>Saturday</td><td>8:00 PM  12:00 AM</td></tr>
-                <tr><td>Sunday</td><td>8:00 PM  12:00 AM</td></tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
-
+</section>
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){var forms=document.querySelectorAll('.needs-validation');Array.prototype.slice.call(forms).forEach(function(form){form.addEventListener('submit',function(e){if(!form.checkValidity()){e.preventDefault();e.stopPropagation();}form.classList.add('was-validated');},false);});})();
+</script>
 </body>
 </html>
