@@ -1,104 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Phantom House portfolio" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root{--maroon-dark:#260b04;--maroon:#5a1200;--teal:#145b61;--gold:#ffd6b8;}
+        body{font-family:'Lato',Arial,sans-serif;background-color:var(--maroon-dark);color:#eee;border:8px solid rgba(26,3,3,0.815);}
+        h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+        .navbar{background-color:rgba(0,0,0,0.75)!important;}
+        .navbar-brand{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:2px;color:#fff!important;}
+        .nav-link{color:rgba(255,255,255,0.85)!important;}.nav-link:hover,.nav-link.active{color:var(--gold)!important;text-decoration:underline;}
+        .hero{min-height:380px;background-image:url('portfolio-hero.jpg');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;}
+        .hero h1{font-size:3rem;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.7);}
+        .section-teal{background-color:var(--teal);padding:55px 0;}
+        .port-img{width:100%;height:260px;object-fit:cover;border:2px solid rgba(255,255,255,0.12);border-radius:6px;}
+        .footer{background-color:var(--maroon-dark);text-align:center;padding:22px 10px;font-size:0.9rem;}
+    </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html" class="current">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link active" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
         </div>
     </div>
-
-    <div class="hero" style="background-image: url('portfolio-hero.jpg');">
-        <h1>Portfolio</h1>
-    </div>
-
-    <div class="section-maroon">
-        <div class="container">
-            <h2 class="section-title">Films &amp; Event Coverage</h2>
-            <div class="clearfix">
-                <div class="col-4">
-                    <div class="card">
-                        <img src="portfolio1.png" alt="Underwater work" />
-                        <p>Beneath the surface.</p>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img src="portfolio2.png" alt="Dhofar project" />
-                        <p>The deserts of Dhofar Governorate.</p>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img src="portfolio3.png" alt="Padel project" />
-                        <p>The energy of Padel.</p>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <img src="portfolio4.png" alt="Musandam project" />
-                        <p>Heritage and nature of Musandam Governorate.</p>
-                    </div>
-                </div>
-            </div>
+</nav>
+<div class="hero"><div><h1>Our Portfolio</h1></div></div>
+<section class="section-teal">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-3 text-center"><img src="portfolio1.png" class="port-img" alt="Project 1"/><p class="mt-2 fw-bold">Cinematic Short</p></div>
+            <div class="col-12 col-sm-6 col-lg-3 text-center"><img src="portfolio2.png" class="port-img" alt="Project 2"/><p class="mt-2 fw-bold">Brand Campaign</p></div>
+            <div class="col-12 col-sm-6 col-lg-3 text-center"><img src="portfolio3.png" class="port-img" alt="Project 3"/><p class="mt-2 fw-bold">Event Coverage</p></div>
+            <div class="col-12 col-sm-6 col-lg-3 text-center"><img src="portfolio4.png" class="port-img" alt="Project 4"/><p class="mt-2 fw-bold">Documentary</p></div>
         </div>
     </div>
-
-    <div class="section-teal">
-        <div class="container">
-            <h2 class="section-title">Portfolio Summary Table</h2>
-            <table>
-                <tr>
-                    <th>Project</th>
-                    <th>Category</th>
-                    <th>Location</th>
-                </tr>
-                <tr>
-                    <td>Marine Story</td>
-                    <td>Underwater Filming</td>
-                    <td>Oman Coast</td>
-                </tr>
-                <tr>
-                    <td>Dhofar Vision</td>
-                    <td>Culture Film</td>
-                    <td>Dhofar</td>
-                </tr>
-                <tr>
-                    <td>Padel Energy</td>
-                    <td>Sports Coverage</td>
-                    <td>Muscat</td>
-                </tr>
-                <tr>
-                    <td>Musandam Heritage</td>
-                    <td>Documentary</td>
-                    <td>Musandam</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
-
+</section>
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
