@@ -2,156 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Phantom House services" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Services</title>
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+    <style>
+        :root { --maroon-dark:#260b04; --maroon:#5a1200; --teal:#145b61; --gold:#ffd6b8; }
+        body { font-family:'Lato',Arial,sans-serif; background-color:var(--maroon-dark); color:#eee; border:8px solid rgba(26,3,3,0.815); }
+        h1,h2,h3 { font-family:'Playfair Display',Georgia,serif; }
+        .navbar { background-color:rgba(0,0,0,0.75)!important; }
+        .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
+        .nav-link { color:rgba(255,255,255,0.85)!important; }
+        .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
+        .hero { min-height:380px; background-image:url('services-hero.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:60px 20px; }
+        .hero h1 { font-size:3rem; color:#fff; text-shadow:2px 2px 8px rgba(0,0,0,0.7); }
+        .hero p  { font-size:1.1rem; font-weight:700; color:#eee; }
+        .section-teal   { background-color:var(--teal); padding:55px 0; }
+        .section-maroon { background-color:var(--maroon); padding:55px 0; }
+        .ph-card { text-align:center; }
+        .ph-card img { width:100%; height:260px; object-fit:cover; border:2px solid rgba(255,255,255,0.12); border-radius:6px; }
+        .ph-card h3 { margin-top:12px; font-size:1.4rem; }
+        .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
+    </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="container clearfix">
-            <div class="logo-box"><div class="logo">PHANTOM HOUSE</div></div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html" class="current">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="process.html">Process</a></li>
-                    <li><a href="equipment.html">Equipment</a></li>
-                    <li><a href="clients.html">Clients</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="process.html">Process</a></li>
+                <li class="nav-item"><a class="nav-link" href="equipment.html">Equipment</a></li>
+                <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
+            </ul>
         </div>
     </div>
-
-    <div class="hero" style="background-image: url('services-hero.jpg');">
-        <h1>Our Services</h1>
-        <p>Where vision becomes cinema, and every frame tells a story.</p>
-    </div>
-
-    <div class="section-teal">
-        <div class="container clearfix">
-            <div class="col-4">
-                <div class="card">
-                    <img src="service1.jpg" alt="Narrative Advertising" />
-                    <h3>Narrative Advertising</h3>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img src="service2.jpg" alt="Underwater Filming" />
-                    <h3>Underwater Filming</h3>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img src="service3.jpg" alt="Film Production" />
-                    <h3>Film Production</h3>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <img src="service4.jpg" alt="Event Documentation" />
-                    <h3>Event Documentation</h3>
-                </div>
-            </div>
+</nav>
+<div class="hero"><div><h1>Our Services</h1><p>Where vision becomes cinema, and every frame tells a story.</p></div></div>
+<section class="section-teal">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-3"><div class="ph-card"><img src="service1.jpg" alt="Narrative Advertising"/><h3>Narrative Advertising</h3></div></div>
+            <div class="col-12 col-sm-6 col-lg-3"><div class="ph-card"><img src="service2.jpg" alt="Underwater Filming"/><h3>Underwater Filming</h3></div></div>
+            <div class="col-12 col-sm-6 col-lg-3"><div class="ph-card"><img src="service3.jpg" alt="Film Production"/><h3>Film Production</h3></div></div>
+            <div class="col-12 col-sm-6 col-lg-3"><div class="ph-card"><img src="service4.jpg" alt="Event Documentation"/><h3>Event Documentation</h3></div></div>
         </div>
     </div>
-
-    <div class="section-maroon">
-        <div class="container">
-            <h2 class="section-title">Service Table</h2>
-            <table>
-                <tr>
-                    <th rowspan="2">Service</th>
-                    <th colspan="2">Details</th>
-                </tr>
-                <tr>
-                    <th>Main Focus</th>
-                    <th>Output</th>
-                </tr>
-                <tr>
-                    <td>Narrative Advertising</td>
-                    <td>Brand storytelling</td>
-                    <td>Promotional cinematic film</td>
-                </tr>
-                <tr>
-                    <td>Underwater Filming</td>
-                    <td>Marine visuals</td>
-                    <td>Documentary and creative shots</td>
-                </tr>
-                <tr>
-                    <td>Film Production</td>
-                    <td>Full production workflow</td>
-                    <td>Short films and commercial work</td>
-                </tr>
-                <tr>
-                    <td>Event Documentation</td>
-                    <td>Live coverage</td>
-                    <td>Highlight films and recap edits</td>
-                </tr>
+</section>
+<section class="section-maroon">
+    <div class="container">
+        <h2 class="text-center mb-4">Service Details</h2>
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered table-hover text-center">
+                <thead class="table-warning text-dark">
+                    <tr><th rowspan="2">Service</th><th colspan="2">Details</th></tr>
+                    <tr><th>Main Focus</th><th>Output</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Narrative Advertising</td><td>Brand storytelling</td><td>Promotional cinematic film</td></tr>
+                    <tr><td>Underwater Filming</td><td>Marine exploration</td><td>Underwater documentary</td></tr>
+                    <tr><td>Film Production</td><td>Creative narrative</td><td>Short or feature film</td></tr>
+                    <tr><td>Event Documentation</td><td>Live coverage</td><td>Event highlight reel</td></tr>
+                </tbody>
             </table>
         </div>
     </div>
-
-    <div class="section-teal">
-        <div class="container">
-            <h2 class="section-title">Service Inquiry Form</h2>
-
-            <form action="https://httpbin.org/get" method="get">
-                <fieldset>
-                    <legend>Request a Service</legend>
-
-                    <label for="clientname">Full Name</label>
-                    <input type="text" id="clientname" name="clientname" />
-
-                    <label for="clientemail">Email</label>
-                    <input type="email" id="clientemail" name="clientemail" />
-
-                    <label for="service_type">Select Service</label>
-                    <select id="service_type" name="service_type">
-                        <option value="narrative_advertising">Narrative Advertising</option>
-                        <option value="underwater_filming">Underwater Filming</option>
-                        <option value="film_production">Film Production</option>
-                        <option value="event_documentation">Event Documentation</option>
-                    </select>
-
-                    <p><strong>Preferred output:</strong></p>
-                    <p>
-                        <input type="radio" id="output1" name="output_format" value="short_film" />
-                        <label for="output1">Short Film</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="output2" name="output_format" value="commercial" />
-                        <label for="output2">Commercial</label>
-                    </p>
-
-                    <p><strong>Additional needs:</strong></p>
-                    <p>
-                        <input type="checkbox" id="need1" name="needs_lighting" value="yes" />
-                        <label for="need1">Lighting</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="need2" name="needs_editing" value="yes" />
-                        <label for="need2">Editing</label>
-                    </p>
-
-                    <label for="details1">Project Description</label>
-                    <textarea id="details1" name="details1" rows="5" cols="40"></textarea>
-
-                    <input type="submit" value="Send Request" />
-                    <input type="reset" value="Clear" />
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
-
+</section>
+<footer class="footer"><p>Phantom House &copy; 2026</p></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
