@@ -30,6 +30,7 @@
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
@@ -52,15 +53,18 @@
     </div>
 </nav>
 
+
 <div class="hero">
     <div><h1>The Technology Behind the Vision</h1></div>
 </div>
+
 
 <section class="section-maroon">
     <div class="container">
         <p class="lead text-center">Behind every cinematic frame lies the power of the right tools. Phantom House relies on professional equipment to capture strong visuals, stable movement, and high-quality cinematic detail.</p>
     </div>
 </section>
+
 
 <section class="section-maroon border-top border-secondary">
     <div class="container">
@@ -109,7 +113,7 @@
             <div class="search-result-box mt-3" id="eqSearchResult">Results will appear here.</div>
         </div>
 
-       
+        
         <div class="card bg-dark border-secondary mt-4 p-4">
             <h5 class="mb-3">&#43; Add New Equipment</h5>
             <div class="row g-3">
@@ -152,16 +156,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/*
-   This JavaScript is for the equipment page.
-   It is used to store equipment data, show it in a table,
-   add new equipment, and search for equipment.
-*/
 
-/*
-   Here I made a constructor for Equipment objects.
-   Each equipment item will have a type, model, purpose, and quantity.
-*/
 function Equipment(type, model, purpose, quantity) {
     this.type     = type;
     this.model    = model;
@@ -169,10 +164,7 @@ function Equipment(type, model, purpose, quantity) {
     this.quantity = quantity;
 }
 
-/*
-   This array stores the starting equipment data.
-   Each item inside it is an Equipment object.
- */
+
 var equipmentArray = [
     new Equipment("Cameras",          "ARRI Alexa Mini LF",   "High-quality cinematic capture",       3),
     new Equipment("Cameras",          "RED Komodo 6K",         "Compact high-resolution cinema",       2),
@@ -184,26 +176,23 @@ var equipmentArray = [
     new Equipment("Lighting",         "Aputure 600D Pro",      "Cinematic daylight-balanced lighting", 5)
 ];
 
-/* 
-   This function shows the equipment in the table.
-   It can show the full array or a filtered array from search.
-*/
+
 function displayEquipment(dataArray) {
-    /* If no array is given, show all equipment */
+    // If no array passed in, use the full equipmentArray
     if (!dataArray) { dataArray = equipmentArray; }
 
-    /* Get the table body from the HTML */
+    // Get reference to the table body element
     var tbody = document.getElementById("equipmentBody");
 
-    /* Clear old rows before showing new ones */
+    // Clear existing rows before re-rendering
     tbody.innerHTML = "";
 
-    /* Loop through each equipment item and make a table row */
+    // Loop through each Equipment object and create a table row
     for (var i = 0; i < dataArray.length; i++) {
         var eq  = dataArray[i];
         var row = document.createElement("tr");
 
-        /* Put the equipment details inside the row */
+        // Build row HTML with the object's properties
         row.innerHTML =
             "<td>" + (i + 1)        + "</td>" +
             "<td>" + eq.type        + "</td>" +
@@ -211,64 +200,57 @@ function displayEquipment(dataArray) {
             "<td>" + eq.purpose     + "</td>" +
             "<td>" + eq.quantity    + "</td>";
 
-        tbody.appendChild(row); /* add the row into the table */
+        tbody.appendChild(row); // Insert row into the table body
     }
 }
 
-/* 
-   This function gets the values from the form,
-   makes a new equipment object, adds it to the array,
-   and updates the table.
-*/
+
 function addEquipment() {
-    /* Get the values entered by the user */
+    // Read values from the input fields
     var type    = document.getElementById("newEqType").value.trim();
     var model   = document.getElementById("newEqModel").value.trim();
     var purpose = document.getElementById("newEqPurpose").value.trim();
     var qty     = parseInt(document.getElementById("newEqQty").value);
 
-    /* Check that all fields are filled correctly */
+    // Basic validation: all fields must be filled
     if (!type || !model || !purpose || isNaN(qty) || qty < 1) {
         document.getElementById("eqAddMsg").textContent = "Please fill in all fields correctly.";
         document.getElementById("eqAddMsg").className   = "ms-3 text-danger fw-bold";
         return;
     }
 
-    /* Make a new equipment object and add it into the array */
+    // Create a new Equipment object and push it into the array
     var newEq = new Equipment(type, model, purpose, qty);
     equipmentArray.push(newEq);
 
-    /* Show the table again so the new item appears */
+    // Re-render the table to include the new row
     displayEquipment();
 
-    /* Clear the form after adding */
+    // Clear the form inputs
     document.getElementById("newEqType").value    = "";
     document.getElementById("newEqModel").value   = "";
     document.getElementById("newEqPurpose").value = "";
     document.getElementById("newEqQty").value     = "";
 
-    /* Show a success message */
+    // Show success message
     document.getElementById("eqAddMsg").textContent = "Equipment added successfully!";
     document.getElementById("eqAddMsg").className   = "ms-3 text-success fw-bold";
 }
 
-/* 
-   This function searches the equipment array using a keyword.
-   It shows only the matching results in the table.
- */
+
 function searchEquipment() {
-    /* Get the keyword from the search box and make it lowercase */
+    // Get the keyword entered by the user and convert to lowercase
     var keyword = document.getElementById("eqSearch").value.trim().toLowerCase();
     var resultBox = document.getElementById("eqSearchResult");
 
-    /* If the search box is empty, show all equipment */
+    // If no keyword entered, show all
     if (!keyword) {
         displayEquipment();
         resultBox.innerHTML = "<span class='text-warning'>Showing all equipment.</span>";
         return;
     }
 
-    /* Make a new array for matching items */
+    // Filter array: keep items whose type OR purpose contains the keyword
     var filtered = [];
     for (var i = 0; i < equipmentArray.length; i++) {
         var eq = equipmentArray[i];
@@ -279,17 +261,17 @@ function searchEquipment() {
         }
     }
 
-    /* Show the search results or show not found message */
+    // Display filtered results or a "not found" message
     if (filtered.length > 0) {
         displayEquipment(filtered);
         resultBox.innerHTML = "<span class='text-success'>Found <strong>" + filtered.length + "</strong> result(s) for <em>\"" + keyword + "\"</em>.</span>";
     } else {
-        displayEquipment([]); /* show empty table */
+        displayEquipment([]); // Show empty table
         resultBox.innerHTML = "<span class='text-danger'>No equipment found matching <em>\"" + keyword + "\"</em>.</span>";
     }
 }
 
-/* Show the equipment table as soon as the page loads */
+
 displayEquipment();
 </script>
 </body>
