@@ -16,7 +16,7 @@
         .navbar-brand { font-family:'Playfair Display',serif; font-size:1.4rem; letter-spacing:2px; color:#fff!important; }
         .nav-link { color:rgba(255,255,255,0.85)!important; }
         .nav-link:hover,.nav-link.active { color:var(--gold)!important; text-decoration:underline; }
-        .hero { min-height:560px; background-image:url('home3.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 20px; }
+        .hero { min-height:560px; background-image:url('home-hero.jpg'); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; padding:80px 20px; }
         .hero h1 { font-size:3.4rem; color:rgb(146,122,122); margin-bottom:14px; }
         .hero p  { font-size:1.2rem; font-weight:700; color:rgb(122,96,96); max-width:700px; margin:auto; }
         .section-maroon { background-color:var(--maroon); padding:55px 0; }
@@ -54,6 +54,8 @@
                 <li class="nav-item"><a class="nav-link" href="clients.html">Clients</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 <li class="nav-item"><a class="nav-link fw-bold text-warning" href="questionnaire.html">Feedback</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-info" href="search.php">Search</a></li>
+                <li class="nav-item"><a class="nav-link fw-bold text-info" href="manage.php">Manage</a></li>
                 <li class="nav-item"><a class="nav-link fw-bold text-warning" href="calculator.html">Calculator</a></li>
                 <li class="nav-item"><a class="nav-link fw-bold text-warning" href="funpage.html">Fun</a></li>
             </ul>
@@ -137,42 +139,39 @@
     </div>
 </section>
 
+
 <div class="scroll-banner">
     <span class="scroll-banner-inner" id="bannerText">Welcome to the Phantom House website!</span>
 </div>
+
 
 <footer class="footer"><p>Phantom House &copy; 2026</p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    /* 
-       This script updates the scrolling banner with the current
-       date and time. It keeps changing every second so the banner
-       always shows the latest time.
-   */
+    
     function updateBanner() {
         var now    = new Date();
         var days   = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-        /* Here I make the date look like:
-           Wednesday, 9 April 2026 */
+        // Build date string: e.g. "Wednesday, 9 April 2026"
         var dateStr = days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear();
 
-        /* Here I make the time show in hours, minutes, and seconds */
+        // Build time string: HH:MM:SS
         var hh = String(now.getHours()).padStart(2,"0");
         var mm = String(now.getMinutes()).padStart(2,"0");
         var ss = String(now.getSeconds()).padStart(2,"0");
         var timeStr = hh + ":" + mm + ":" + ss;
 
-        /* This puts the welcome message, date, and time into the banner */
+        // Set the banner text
         document.getElementById("bannerText").innerHTML =
             "&#9733; Welcome to the Phantom House website! &nbsp;&nbsp;&nbsp; Today is " +
             dateStr + ", and the time is " + timeStr +
             " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#127916; Where vision meets cinema. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     }
 
-    /* Run the function once at the start, then repeat it every second */
+    
     updateBanner();
     setInterval(updateBanner, 1000);
 </script>
