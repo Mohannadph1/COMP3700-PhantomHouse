@@ -69,7 +69,7 @@
     <div class="container">
         <h2 class="text-center mb-4">Our Client Portfolio</h2>
 
-       
+        
         <div class="table-responsive">
             <table class="table table-dark table-bordered table-hover text-center" id="clientsTable">
                 <thead class="table-warning text-dark">
@@ -83,12 +83,12 @@
                     </tr>
                 </thead>
                 <tbody id="clientsBody">
-                   
+                    
                 </tbody>
             </table>
         </div>
 
-       
+        
         <div class="card bg-dark border-secondary mt-4 p-4">
             <h5 class="mb-3">&#128269; Search Clients</h5>
             <div class="row g-2 align-items-end">
@@ -147,7 +147,7 @@
     <div class="container">
         <h2 class="text-center mb-4">Project Request Form</h2>
         <div class="card bg-dark border-secondary p-4">
-            <form action="https://httpbin.org/get" method="get" class="needs-validation" novalidate>
+            <form action="clients_process.php" method="POST" class="needs-validation" novalidate>
                 <div class="row g-3">
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="fullname2">Full Name</label>
@@ -205,252 +205,145 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 
-/* 
-   This JavaScript is for the questionnaire form.
-   It checks if the user filled in the form correctly before submitting it.
-   It also shows error messages if something is missing or wrong.
-*/
-
-/* 
-   This helper function shows an error message under a field.
-   If the message is empty, it clears the error.
- */
-function showError(id, message) {
-    document.getElementById(id).innerHTML = message;
+function Client(name, sector, projectType, year, status) {
+    this.name        = name;
+    this.sector      = sector;
+    this.projectType = projectType;
+    this.year        = year;
+    this.status      = status;
 }
 
-/* 
-   This helper function clears all old error messages
-   before the form is checked again.
-*/
-function clearAllErrors() {
-    /* Go through all the error message areas and make them empty */
-    var errorIds = ["errName", "errEmail", "errPhone", "errService", "errExp", "errComments", "errAgree"];
-    for (var i = 0; i < errorIds.length; i++) {
-        document.getElementById(errorIds[i]).innerHTML = "";
+
+var clientsArray = [
+    new Client("Ministry of Heritage & Tourism", "Government",    "Documentary Film",   2024, "Completed"),
+    new Client("Oman Oil Company",               "Energy",        "Corporate Video",    2024, "Completed"),
+    new Client("Bank Muscat",                    "Banking",       "Commercial Ad",      2025, "Completed"),
+    new Client("Royal Opera House Muscat",       "Arts & Culture","Event Coverage",     2025, "Completed"),
+    new Client("Muscat Municipality",            "Government",    "Promotional Film",   2025, "Ongoing"),
+    new Client("Al Mouj Muscat",                 "Real Estate",   "Aerial Photography", 2026, "Ongoing"),
+    new Client("OmanAir",                        "Aviation",      "Brand Campaign",     2026, "Upcoming"),
+    new Client("PDO",                            "Energy",        "Training Videos",    2026, "Upcoming")
+];
+
+
+function displayClients(dataArray) {
+    // Default to the full array if no filtered array is passed
+    if (!dataArray) { dataArray = clientsArray; }
+
+    var tbody = document.getElementById("clientsBody");
+    tbody.innerHTML = ""; // Clear previous rows
+
+    for (var i = 0; i < dataArray.length; i++) {
+        var cl  = dataArray[i];
+        var row = document.createElement("tr");
+
+        // Choose a badge colour based on project status
+        var badgeClass = "bg-secondary";
+        if      (cl.status === "Completed") { badgeClass = "bg-success"; }
+        else if (cl.status === "Ongoing")   { badgeClass = "bg-warning text-dark"; }
+        else if (cl.status === "Upcoming")  { badgeClass = "bg-info text-dark"; }
+
+        row.innerHTML =
+            "<td>" + (i + 1) + "</td>" +
+            "<td>" + cl.name        + "</td>" +
+            "<td>" + cl.sector      + "</td>" +
+            "<td>" + cl.projectType + "</td>" +
+            "<td>" + cl.year        + "</td>" +
+            "<td><span class='badge " + badgeClass + "'>" + cl.status + "</span></td>";
+
+        tbody.appendChild(row);
     }
 }
 
-/* 
-   This is the main validation function.
-   It runs when the form is submitted.
-   It checks each field one by one and stops if something is wrong.
-*/
-function validateFeedback() {
 
-    clearAllErrors(); /* clear old errors first */
+function addClient() {
+    var name    = document.getElementById("newClName").value.trim();
+    var sector  = document.getElementById("newClSector").value.trim();
+    var project = document.getElementById("newClProject").value.trim();
+    var year    = parseInt(document.getElementById("newClYear").value);
+    var status  = document.getElementById("newClStatus").value;
+    var msgEl   = document.getElementById("clAddMsg");
 
-    /* Get all the form fields from the page */
-    var nameField     = document.getElementById("fbName");
-    var emailField    = document.getElementById("fbEmail");
-    var phoneField    = document.getElementById("fbPhone");
-    var serviceField  = document.getElementById("fbService");
-    var commentsField = document.getElementById("fbComments");
-    var agreeField    = document.getElementById("fbAgree");
-
-    /* 
-       Check the full name.
-       It should not be empty, should only have letters and spaces,
-       and should be at least 3 characters long.
-    */
-    if (nameField.value == "") {
-        showError("errName", "Name is required.");
-        nameField.focus(); /* move the cursor to this field */
-        return false;
-    }
-    if (nameField.value.search(/^[A-Za-z\s]+$/) == -1) {
-        /* this checks if the name has only letters and spaces */
-        showError("errName", "Name must contain letters only (no numbers or symbols).");
-        nameField.focus();
-        return false;
-    }
-    if (nameField.value.length < 3) {
-        /* this checks the minimum length of the name */
-        showError("errName", "Name must be at least 3 characters long.");
-        nameField.focus();
-        return false;
+    
+    if (!name || !sector || !project || isNaN(year)) {
+        msgEl.textContent = "Please fill in all fields correctly.";
+        msgEl.className   = "ms-3 text-danger fw-bold";
+        return;
     }
 
-    /* 
-       Check the email address.
-       It should not be empty and must contain @ and .
-    */
-    if (emailField.value == "") {
-        showError("errEmail", "Email address is required.");
-        emailField.focus();
-        return false;
-    }
-    if (emailField.value.indexOf("@", 0) < 0) {
-        /* this checks if @ is inside the email */
-        showError("errEmail", "Please enter a valid email address (must contain @).");
-        emailField.focus();
-        return false;
-    }
-    if (emailField.value.indexOf(".", 0) < 0) {
-        /* this checks if . is inside the email */
-        showError("errEmail", "Please enter a valid email address (must contain .).");
-        emailField.focus();
-        return false;
+    
+    clientsArray.push(new Client(name, sector, project, year, status));
+
+   
+    displayClients();
+
+   
+    document.getElementById("newClName").value    = "";
+    document.getElementById("newClSector").value  = "";
+    document.getElementById("newClProject").value = "";
+    document.getElementById("newClYear").value    = "";
+
+    msgEl.textContent = "Client added successfully!";
+    msgEl.className   = "ms-3 text-success fw-bold";
+}
+
+
+function searchClients() {
+    var keyword   = document.getElementById("clSearch").value.trim().toLowerCase();
+    var resultBox = document.getElementById("clSearchResult");
+
+    if (!keyword) {
+        displayClients();
+        resultBox.innerHTML = "<span class='text-warning'>Showing all clients.</span>";
+        return;
     }
 
-    /* 
-       Check the phone number.
-       It should not be empty and must be 8 digits,
-       starting with 9 or 7.
-    */
-    if (phoneField.value == "") {
-        showError("errPhone", "Phone number is required.");
-        phoneField.focus();
-        return false;
-    }
-    if (phoneField.value.search(/^[97]\d{7}$/) == -1) {
-        showError("errPhone", "Phone must be 8 digits and start with 9 or 7 (e.g. 91234567).");
-        phoneField.focus();
-        return false;
-    }
-
-    /* 
-       Check if the user selected a service from the dropdown.
-     */
-    if (serviceField.selectedIndex < 1) {
-        /* if it is still on the first option, nothing was selected */
-        showError("errService", "Please select the service you used.");
-        serviceField.focus();
-        return false;
-    }
-
-    /* 
-       Check the radio buttons for overall experience.
-       The user must choose one option.
-     */
-    var radios = document.forms["feedbackForm"]["fbExp"];
-    var expSelected = false;
-    for (var i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            expSelected = true;
-            break;
+    
+    var filtered = [];
+    for (var i = 0; i < clientsArray.length; i++) {
+        var cl = clientsArray[i];
+        if (cl.name.toLowerCase().indexOf(keyword)        !== -1 ||
+            cl.sector.toLowerCase().indexOf(keyword)      !== -1 ||
+            cl.projectType.toLowerCase().indexOf(keyword) !== -1 ||
+            cl.status.toLowerCase().indexOf(keyword)      !== -1) {
+            filtered.push(cl);
         }
     }
-    if (!expSelected) {
-        showError("errExp", "Please select your overall experience rating.");
-        return false;
-    }
 
-    /* 
-       Check the comments box.
-       It should not be empty and must have at least 20 characters.
-     */
-    if (commentsField.value == "") {
-        showError("errComments", "Comments are required.");
-        commentsField.focus();
-        return false;
+    if (filtered.length > 0) {
+        displayClients(filtered);
+        resultBox.innerHTML = "<span class='text-success'>Found <strong>" + filtered.length + "</strong> result(s) for <em>\"" + keyword + "\"</em>.</span>";
+    } else {
+        displayClients([]);
+        resultBox.innerHTML = "<span class='text-danger'>No clients found matching <em>\"" + keyword + "\"</em>.</span>";
     }
-    if (commentsField.value.length < 20) {
-        showError("errComments", "Comments must be at least 20 characters. You entered: " + commentsField.value.length + " characters.");
-        commentsField.focus();
-        return false;
-    }
-
-    /* 
-       Check if the agreement checkbox is ticked.
-    */
-    if (!agreeField.checked) {
-        showError("errAgree", "You must agree to the terms before submitting.");
-        return false;
-    }
-
-    /* If everything is correct, hide the form and show success message */
-    document.getElementById("feedbackFormDiv").style.display = "none";
-    document.getElementById("successBox").style.display      = "block";
-
-    return false; /* stop real form submission because there is no server */
 }
 
-/* 
-   This function clears the form manually.
-   It resets all fields, radio buttons, checkboxes, and errors.
- */
-function clearFeedbackForm() {
-    /* Clear all text boxes and the comments area */
-    document.getElementById("fbName").value     = "";
-    document.getElementById("fbEmail").value    = "";
-    document.getElementById("fbPhone").value    = "";
-    document.getElementById("fbComments").value = "";
 
-    /* Reset the dropdown back to the first option */
-    document.getElementById("fbService").selectedIndex = 0;
-
-    /* Untick all radio buttons */
-    var radios = document.forms["feedbackForm"]["fbExp"];
-    for (var i = 0; i < radios.length; i++) {
-        radios[i].checked = false;
-    }
-
-    /* Untick all checkboxes */
-    var checkboxIds = ["chkProfessional", "chkCreativity", "chkDelivery", "chkQuality", "fbAgree"];
-    for (var i = 0; i < checkboxIds.length; i++) {
-        document.getElementById(checkboxIds[i]).checked = false;
-    }
-
-    /* Remove all old error messages */
-    clearAllErrors();
+function clearAddClientForm() {
+    document.getElementById("newClName").value    = "";
+    document.getElementById("newClSector").value  = "";
+    document.getElementById("newClProject").value = "";
+    document.getElementById("newClYear").value    = "";
+    document.getElementById("newClStatus").value  = "Completed";
+    var msgEl = document.getElementById("clAddMsg");
+    msgEl.textContent = "";
+    msgEl.className   = "ms-3 fw-bold";
 }
 
-/* 
-   This function hides the success message
-   and shows the form again for another response.
-*/
-function resetForm() {
-    document.getElementById("successBox").style.display      = "none";
-    document.getElementById("feedbackFormDiv").style.display = "block";
-    clearFeedbackForm();
-}
+
+(function() {
+    var forms = document.querySelectorAll('.needs-validation');
+    Array.prototype.slice.call(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+
+
+displayClients();
 </script>
-</body>
-</html>                        <option value="creative_film">Creative Film</option>
-                    </select>
-
-                    <p><strong>Production scale:</strong></p>
-                    <p>
-                        <input type="radio" id="scale1" name="scale" value="small" />
-                        <label for="scale1">Small</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="scale2" name="scale" value="medium" />
-                        <label for="scale2">Medium</label>
-                    </p>
-                    <p>
-                        <input type="radio" id="scale3" name="scale" value="large" />
-                        <label for="scale3">Large</label>
-                    </p>
-
-                    <p><strong>Required extras:</strong></p>
-                    <p>
-                        <input type="checkbox" id="extra1" name="drone" value="yes" />
-                        <label for="extra1">Drone Coverage</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="extra2" name="subtitles" value="yes" />
-                        <label for="extra2">Subtitles</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="extra3" name="social_cut" value="yes" />
-                        <label for="extra3">Social Media Cut</label>
-                    </p>
-
-                    <label for="brief2">Brief</label>
-                    <textarea id="brief2" name="brief2" rows="5" cols="40"></textarea>
-
-                    <input type="submit" value="Submit" />
-                    <input type="reset" value="Reset" />
-                </fieldset>
-            </form>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>Phantom House © 2026 </p>
-    </div>
-
 </body>
 </html>
