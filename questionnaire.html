@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Feedback</title>
-
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     <style>
@@ -27,13 +27,14 @@
         .error-msg { color:#ff6b6b; font-size:0.85rem; display:block; margin-top:4px; }
         .success-box { background:linear-gradient(135deg,#145b61,#5a1200); border-radius:12px; padding:40px; text-align:center; display:none; }
         .footer { background-color:var(--maroon-dark); text-align:center; padding:22px 10px; font-size:0.9rem; }
-        
+        /* Ensure all labels are always visible */
         .form-label { color:var(--gold) !important; font-weight:600; }
         .form-check-label { color:#eee !important; font-weight:400; }
         .form-card .form-check-label { color:#eee !important; }
     </style>
 </head>
 <body>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
@@ -59,16 +60,19 @@
     </div>
 </nav>
 
+
 <div class="page-header">
     <h1>Client Feedback</h1>
     <p>Help us improve by sharing your experience with Phantom House.</p>
 </div>
+
 
 <section class="section-maroon">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-9">
 
+                
                 <div class="success-box" id="successBox">
                     <h2 class="text-white mb-3">&#10003; Thank You!</h2>
                     <p class="text-light fs-5">Your feedback has been received. We appreciate you taking the time.</p>
@@ -79,7 +83,7 @@
                 <div class="form-card" id="feedbackFormDiv">
                     <h3 class="mb-4 text-center">Feedback Questionnaire</h3>
 
-                    <form name="feedbackForm" action="" onsubmit="return validateFeedback()">
+                    <form name="feedbackForm" action="feedback_process.php" method="POST" onsubmit="return validateFeedback()">
 
                         
                         <div class="mb-4">
@@ -182,44 +186,28 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <script>
-/* 
-   This JavaScript is for the questionnaire form.
-   It checks if the user filled in the form correctly before submitting it.
-   It also shows error messages if something is missing or wrong.
-*/
 
-/* 
-   This helper function shows an error message under a field.
-   If the message is empty, it clears the error.
-*/
+
 function showError(id, message) {
     document.getElementById(id).innerHTML = message;
 }
 
-/* 
-   This helper function clears all old error messages
-   before the form is checked again.
-*/
+
 function clearAllErrors() {
-    /* Go through all the error message areas and make them empty */
+    /* Loop through all error span IDs and clear them */
     var errorIds = ["errName", "errEmail", "errPhone", "errService", "errExp", "errComments", "errAgree"];
     for (var i = 0; i < errorIds.length; i++) {
         document.getElementById(errorIds[i]).innerHTML = "";
     }
 }
 
-/* 
-   This is the main validation function.
-   It runs when the form is submitted.
-   It checks each field one by one and stops if something is wrong.
-*/
+
 function validateFeedback() {
 
-    clearAllErrors(); /* clear old errors first */
+    clearAllErrors(); /* Clear old error messages first */
 
-    /* Get all the form fields from the page */
+   
     var nameField     = document.getElementById("fbName");
     var emailField    = document.getElementById("fbEmail");
     var phoneField    = document.getElementById("fbPhone");
@@ -227,56 +215,43 @@ function validateFeedback() {
     var commentsField = document.getElementById("fbComments");
     var agreeField    = document.getElementById("fbAgree");
 
-    /* 
-       Check the full name.
-       It should not be empty, should only have letters and spaces,
-       and should be at least 3 characters long.
-   */
     if (nameField.value == "") {
         showError("errName", "Name is required.");
-        nameField.focus(); /* move the cursor to this field */
+        nameField.focus();
         return false;
     }
     if (nameField.value.search(/^[A-Za-z\s]+$/) == -1) {
-        /* this checks if the name has only letters and spaces */
+        
         showError("errName", "Name must contain letters only (no numbers or symbols).");
         nameField.focus();
         return false;
     }
     if (nameField.value.length < 3) {
-        /* this checks the minimum length of the name */
+   
         showError("errName", "Name must be at least 3 characters long.");
         nameField.focus();
         return false;
     }
 
-    /* 
-       Check the email address.
-       It should not be empty and must contain @ and .
-    */
+   
     if (emailField.value == "") {
         showError("errEmail", "Email address is required.");
         emailField.focus();
         return false;
     }
     if (emailField.value.indexOf("@", 0) < 0) {
-        /* this checks if @ is inside the email */
+       
         showError("errEmail", "Please enter a valid email address (must contain @).");
         emailField.focus();
         return false;
     }
     if (emailField.value.indexOf(".", 0) < 0) {
-        /* this checks if . is inside the email */
         showError("errEmail", "Please enter a valid email address (must contain .).");
         emailField.focus();
         return false;
     }
 
-    /* 
-       Check the phone number.
-       It should not be empty and must be 8 digits,
-       starting with 9 or 7.
-     */
+
     if (phoneField.value == "") {
         showError("errPhone", "Phone number is required.");
         phoneField.focus();
@@ -288,20 +263,15 @@ function validateFeedback() {
         return false;
     }
 
-    /* 
-       Check if the user selected a service from the dropdown.
-     */
+   
     if (serviceField.selectedIndex < 1) {
-        /* if it is still on the first option, nothing was selected */
+        /* selectedIndex < 1 means placeholder is selected — Week 6 */
         showError("errService", "Please select the service you used.");
         serviceField.focus();
         return false;
     }
 
-    /* 
-       Check the radio buttons for overall experience.
-       The user must choose one option.
-    */
+   
     var radios = document.forms["feedbackForm"]["fbExp"];
     var expSelected = false;
     for (var i = 0; i < radios.length; i++) {
@@ -315,10 +285,7 @@ function validateFeedback() {
         return false;
     }
 
-    /* 
-       Check the comments box.
-       It should not be empty and must have at least 20 characters.
-    */
+    
     if (commentsField.value == "") {
         showError("errComments", "Comments are required.");
         commentsField.focus();
@@ -330,57 +297,47 @@ function validateFeedback() {
         return false;
     }
 
-    /* 
-       Check if the agreement checkbox is ticked.
-    */
-
+    
     if (!agreeField.checked) {
         showError("errAgree", "You must agree to the terms before submitting.");
         return false;
     }
 
-    /* If everything is correct, hide the form and show success message */
+    /* All validations passed — show success message */
     document.getElementById("feedbackFormDiv").style.display = "none";
     document.getElementById("successBox").style.display      = "block";
 
-    return false; /* stop real form submission because there is no server */
+    return false; 
 }
 
 
-/* 
-   This function clears the form manually.
-   It resets all fields, radio buttons, checkboxes, and errors.
-*/
 function clearFeedbackForm() {
-    /* Clear all text boxes and the comments area */
+    /* Clear all text inputs and textarea */
     document.getElementById("fbName").value     = "";
     document.getElementById("fbEmail").value    = "";
     document.getElementById("fbPhone").value    = "";
     document.getElementById("fbComments").value = "";
 
-    /* Reset the dropdown back to the first option */
+    
     document.getElementById("fbService").selectedIndex = 0;
 
-    /* Untick all radio buttons */
+   
     var radios = document.forms["feedbackForm"]["fbExp"];
     for (var i = 0; i < radios.length; i++) {
         radios[i].checked = false;
     }
 
-    /* Untick all checkboxes */
+    
     var checkboxIds = ["chkProfessional", "chkCreativity", "chkDelivery", "chkQuality", "fbAgree"];
     for (var i = 0; i < checkboxIds.length; i++) {
         document.getElementById(checkboxIds[i]).checked = false;
     }
 
-    /* Remove all old error messages */
+  
     clearAllErrors();
 }
 
-/* 
-   This function hides the success message
-   and shows the form again for another response.
- */
+
 function resetForm() {
     document.getElementById("successBox").style.display      = "none";
     document.getElementById("feedbackFormDiv").style.display = "block";
