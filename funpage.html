@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phantom House | Cinema Quiz</title>
-
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
     <style>
@@ -37,6 +37,7 @@
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
@@ -61,14 +62,17 @@
     </div>
 </nav>
 
+
 <div class="page-header">
     <h1>&#127916; Cinema Trivia Quiz</h1>
     <p>Test your knowledge of filmmaking, cameras, and cinematic terms!</p>
 </div>
 
+
 <section class="section-maroon">
     <div class="container">
 
+        
         <div class="score-board" id="scoreBoard">
             <div id="medalEmoji" style="font-size:4rem;">&#127942;</div>
             <p class="fs-4 mt-3" id="scoreTitle">Quiz Complete!</p>
@@ -81,8 +85,10 @@
             <div id="reviewPanel" class="mt-4 text-start" style="display:none;"></div>
         </div>
 
+        
         <div class="quiz-card" id="quizCard">
 
+            
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                 <div>
                     <div style="font-size:0.9rem; color:rgba(255,255,255,0.55);" id="qCounter">Question 1 of 10</div>
@@ -96,18 +102,23 @@
                 </div>
             </div>
 
+            
             <div class="d-flex gap-2 flex-wrap mb-2">
                 <input type="button" class="btn btn-outline-warning btn-sm" id="btnFifty" value="50/50" onclick="useFiftyFifty()" />
                 <input type="button" class="btn btn-outline-info btn-sm"    id="btnHint"  value="Hint"  onclick="useHint()" />
             </div>
             <div id="hintBox" style="min-height:20px; font-size:0.9rem; color:#7ee8fa;"></div>
 
+            
             <div class="question-text" id="questionText">Loading...</div>
 
+            
             <div id="optionsContainer"></div>
 
+            
             <div class="feedback-text" id="feedbackText"></div>
 
+            
             <div class="text-end mt-4">
                 <input type="button" class="btn btn-warning px-5" id="btnNext" value="Next" onclick="nextQuestion()" style="display:none;" />
             </div>
@@ -121,17 +132,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* 
-   This JavaScript is for the cinema trivia quiz page.
-   It controls the quiz, timer, score, hints, and final result.
-   It also creates some parts of the quiz on the page using JavaScript.
-*/
 
-/* 
-   These are all the quiz questions.
-   Each question has the question text, answer choices,
-   the correct answer, a hint, and an explanation.
-*/
 var questions = [
     { q: "What does 'cinematography' literally mean?",
       options: ["Writing with cameras","Writing with light and movement","Writing with sound","Writing with color"],
@@ -184,84 +185,75 @@ var questions = [
       explain: "Parallel editing (cross-cutting) intercuts two events to suggest simultaneous action." }
 ];
 
-/*
-   These variables keep track of the quiz while the user is playing.
-*/
-var currentIndex  = 0;    /* this shows which question the user is on */
-var score         = 0;    /* this stores the user's score */
-var userAnswers   = [];   /* this saves the answer chosen for each question */
-var timerInterval = null; /* this stores the timer so it can be stopped */
-var timeLeft      = 20;   /* this is the time for each question */
-var usedFifty     = false;/* this checks if 50/50 was already used */
-var usedHint      = false;/* this checks if hint was already used */
 
-/* 
-   This function loads one question onto the page.
-   It shows the question, choices, progress, and starts the timer.
- */
+var currentIndex  = 0;    /* which question we are on */
+var score         = 0;    /* player score */
+var userAnswers   = [];   /* stores chosen answer per question */
+var timerInterval = null; /* reference to setInterval */
+var timeLeft      = 20;   /* seconds per question */
+var usedFifty     = false;/* track 50/50 lifeline per question */
+var usedHint      = false;/* track hint lifeline per question */
+
+
 function loadQuestion(index) {
 
-    /* If there are no more questions, show the final score */
+    /* If all questions done, show score board */
     if (index >= questions.length) {
         showScoreBoard();
         return;
     }
 
-    var q = questions[index]; /* get the current question */
+    var q = questions[index]; /* get current question object */
 
-    /* Show which question number the user is on */
+    /* Update counter text using innerHTML (Week 5 lecture) */
     document.getElementById("qCounter").innerHTML = "Question " + (index + 1) + " of " + questions.length;
 
-    /* Update the progress bar */
+    /* Update progress bar width */
     var pct = ((index + 1) / questions.length) * 100;
     document.getElementById("progressFill").style.width = pct + "%";
 
-    /* Show the question text */
+    /* Set question text using innerHTML */
     document.getElementById("questionText").innerHTML = q.q;
 
-    /* Clear old feedback and hint, and hide the Next button */
     document.getElementById("feedbackText").innerHTML = "";
     document.getElementById("feedbackText").className = "feedback-text";
     document.getElementById("hintBox").innerHTML      = "";
     document.getElementById("btnNext").style.display  = "none";
 
-    /* Reset the lifeline buttons for the new question */
+    
     usedFifty = false;
     usedHint  = false;
     document.getElementById("btnFifty").disabled = false;
     document.getElementById("btnHint").disabled  = false;
 
-    /* This part creates the answer buttons using JavaScript */
+    
     var container = document.getElementById("optionsContainer");
-    container.innerHTML = ""; /* remove old buttons */
+    container.innerHTML = ""; 
 
     for (var i = 0; i < q.options.length; i++) {
-        /* Make one button for each answer option */
+        
         var btn = document.createElement("button");
         btn.className   = "option-btn";
         btn.innerHTML   = q.options[i];
-        btn.setAttribute("data-index", i); /* save the option number */
+        btn.setAttribute("data-index", i); 
 
-        /* When the button is clicked, it sends that answer to checkAnswer */
+      
         (function(optionIndex) {
             btn.onclick = function() {
                 checkAnswer(optionIndex);
             };
         })(i);
 
-        container.appendChild(btn); /* put the button on the page */
+        container.appendChild(btn); 
     }
 
-    /* Start the timer for this question */
+    
     startTimer();
 }
 
-/* 
-   This function starts the countdown from 20 seconds.
-   If the time finishes, the answer is counted wrong.
-*/
+
 function startTimer() {
-    clearInterval(timerInterval); /* stop old timer if there is one */
+    clearInterval(timerInterval); /* stop any existing timer */
     timeLeft = 20;
 
     var display   = document.getElementById("timerDisplay");
@@ -272,37 +264,35 @@ function startTimer() {
         timeLeft = timeLeft - 1;
         display.innerHTML = timeLeft;
 
-        /* Make the timer look urgent when 5 seconds are left */
+        /* Turn red when 5 seconds or less remain */
         if (timeLeft <= 5) {
             display.className = "timer-display timer-urgent";
         }
 
-        /* When time finishes, stop the timer and show correct answer */
+        /* Time is up — disable buttons and move on */
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             disableAllOptions();
-            userAnswers[currentIndex] = -1; /* -1 means no answer was chosen */
+            userAnswers[currentIndex] = -1; /* -1 = no answer */
             document.getElementById("feedbackText").innerHTML  = "Time's up! Correct answer: " + questions[currentIndex].options[questions[currentIndex].answer];
             document.getElementById("feedbackText").className  = "feedback-text feedback-wrong";
             document.getElementById("btnNext").style.display   = "inline-block";
         }
-    }, 1000); /* run every 1 second */
+    }, 1000); /* 1000ms = 1 second */
 }
 
-/* 
-   This function checks if the selected answer is correct or not.
-*/
+
 function checkAnswer(selectedIndex) {
-    clearInterval(timerInterval); /* stop the timer after an answer is clicked */
+    clearInterval(timerInterval); /* stop timer */
 
     var q         = questions[currentIndex];
-    var isCorrect = (selectedIndex == q.answer); /* compare chosen answer with correct answer */
+    var isCorrect = (selectedIndex == q.answer); /* comparison */
 
-    userAnswers[currentIndex] = selectedIndex; /* save the user's answer */
+    userAnswers[currentIndex] = selectedIndex; /* store answer */
 
-    disableAllOptions(); /* stop the user from clicking more answers */
+    disableAllOptions(); /* stop further clicking */
 
-    /* Show correct answer in green and wrong selected answer in red */
+  
     var buttons = document.getElementById("optionsContainer").getElementsByTagName("button");
     for (var i = 0; i < buttons.length; i++) {
         var btnIndex = parseInt(buttons[i].getAttribute("data-index"));
@@ -313,9 +303,9 @@ function checkAnswer(selectedIndex) {
         }
     }
 
-    /* Update score and show feedback */
+    /* Update score and feedback text */
     if (isCorrect) {
-        score = score + 1; /* add 1 point if correct */
+        score = score + 1; /* increment score */
         document.getElementById("liveScore").innerHTML    = score;
         document.getElementById("feedbackText").innerHTML = "Correct! " + q.explain;
         document.getElementById("feedbackText").className = "feedback-text feedback-correct";
@@ -324,14 +314,11 @@ function checkAnswer(selectedIndex) {
         document.getElementById("feedbackText").className = "feedback-text feedback-wrong";
     }
 
-    /* Show the Next button after answering */
+    /* Show Next button */
     document.getElementById("btnNext").style.display = "inline-block";
 }
 
-/* 
-   This function disables all answer buttons
-   so the user cannot click again.
-*/
+
 function disableAllOptions() {
     var buttons = document.getElementById("optionsContainer").getElementsByTagName("button");
     for (var i = 0; i < buttons.length; i++) {
@@ -339,18 +326,13 @@ function disableAllOptions() {
     }
 }
 
-/*
-   This function moves the quiz to the next question.
-*/
+
 function nextQuestion() {
     currentIndex = currentIndex + 1;
     loadQuestion(currentIndex);
 }
 
-/*
-   This function is the 50/50 lifeline.
-   It hides 2 wrong answers.
-*/
+
 function useFiftyFifty() {
     if (usedFifty) { return; }
     usedFifty = true;
@@ -360,20 +342,18 @@ function useFiftyFifty() {
     var buttons = document.getElementById("optionsContainer").getElementsByTagName("button");
     var removed = 0;
 
-    /* Hide two wrong answer buttons */
+    /* Loop and hide 2 wrong answers */
     for (var i = 0; i < buttons.length; i++) {
         if (removed >= 2) { break; }
         var btnIndex = parseInt(buttons[i].getAttribute("data-index"));
         if (btnIndex != q.answer) {
-            buttons[i].style.visibility = "hidden"; /* hide wrong option */
+            buttons[i].style.visibility = "hidden"; /* hide the button */
             removed = removed + 1;
         }
     }
 }
 
-/* 
-   This function shows a hint for the current question.
-*/
+
 function useHint() {
     if (usedHint) { return; }
     usedHint  = true;
@@ -381,17 +361,14 @@ function useHint() {
     document.getElementById("hintBox").innerHTML  = "Hint: " + questions[currentIndex].hint;
 }
 
-/*
-   This function shows the final score page.
-   It also gives a title/message based on the result.
-*/
+
 function showScoreBoard() {
     clearInterval(timerInterval);
     document.getElementById("quizCard").style.display   = "none";
     document.getElementById("scoreBoard").style.display = "block";
     document.getElementById("finalScore").innerHTML     = score;
 
-    /* Work out the percentage and choose a result message */
+    /* Grade using if-else conditions (Week 5 lecture) */
     var pct = (score / questions.length) * 100;
     var medal, title, msg;
 
@@ -414,10 +391,7 @@ function showScoreBoard() {
     document.getElementById("scoreMsg").innerHTML   = msg;
 }
 
-/* 
-   This function shows a review of all answers after the quiz.
-   It tells the user what they chose and what was correct.
-*/
+
 function showReview() {
     var panel = document.getElementById("reviewPanel");
     panel.style.display = "block";
@@ -440,9 +414,7 @@ function showReview() {
     }
 }
 
-/*
-   This function resets everything and starts the quiz again.
-*/
+
 function restartQuiz() {
     currentIndex  = 0;
     score         = 0;
@@ -458,7 +430,7 @@ function restartQuiz() {
     loadQuestion(0);
 }
 
-/* This starts the quiz automatically when the page opens */
+
 loadQuestion(0);
 </script>
 </body>
