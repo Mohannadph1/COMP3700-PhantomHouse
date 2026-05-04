@@ -36,6 +36,7 @@
 </head>
 <body>
 
+
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
         <a class="navbar-brand" href="index.html">PHANTOM HOUSE</a>
@@ -85,7 +86,7 @@
                 <div class="calc-card">
                     <h3 class="mb-4 text-center">Enter Project Details</h3>
 
-               
+                    
                     <div class="mb-4">
                         <label class="form-label" for="clientType">Client Type</label>
                         <select id="clientType" class="form-select">
@@ -95,13 +96,13 @@
                         </select>
                     </div>
 
-                  
+                    
                     <div class="mb-4">
                         <label class="form-label" for="shootDays">Number of Shooting Days</label>
                         <input type="number" id="shootDays" class="form-control" value="1" min="1" max="60" />
                     </div>
 
-                 
+                    
                     <div class="mb-4">
                         <label class="form-label" for="crewSize">Crew Size</label>
                         <select id="crewSize" class="form-select">
@@ -111,7 +112,7 @@
                         </select>
                     </div>
 
-          
+                    
                     <div class="mb-4">
                         <label class="form-label" for="equipPackage">Equipment Package</label>
                         <select id="equipPackage" class="form-select">
@@ -121,7 +122,7 @@
                         </select>
                     </div>
 
-                 
+                    
                     <div class="mb-4">
                         <label class="form-label" for="postProd">Post-Production Level</label>
                         <select id="postProd" class="form-select">
@@ -131,7 +132,7 @@
                         </select>
                     </div>
 
-                   
+                    
                     <div class="mb-4">
                         <label class="form-label d-block">Optional Add-ons</label>
                         <div class="form-check"><input class="form-check-input" type="checkbox" id="addDrone"  value="200"/><label class="form-check-label" for="addDrone">Aerial Drone (extra day) — OMR 200</label></div>
@@ -140,13 +141,13 @@
                         <div class="form-check"><input class="form-check-input" type="checkbox" id="addBTS"    value="150"/><label class="form-check-label" for="addBTS">Behind-the-Scenes Package — OMR 150</label></div>
                     </div>
 
-                  
+                    
                     <div class="text-center">
                         <input type="button" class="btn btn-warning btn-lg px-5" value="Calculate Estimate" onclick="calculateCost()" />
                         <input type="button" class="btn btn-outline-light btn-lg px-4 ms-2" value="Clear" onclick="clearCalc()" />
                     </div>
 
-                  
+                    
                     <div class="result-box" id="resultBox">
                         <h4 class="text-center mb-4">&#128203; Cost Breakdown</h4>
                         <div class="result-row"><span>Crew cost (days &times; daily rate):</span><span id="rCrew"></span></div>
@@ -176,30 +177,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* 
-   This JavaScript is for the calculator page.
-   It helps calculate the total cost based on the user's choices.
-   It uses simple things like variables, functions, if-else, and math.
- */
 
-/* 
-   These are the daily crew prices.
-   Each crew size has its own price for one day.
-*/
 var crewRates = {
     "small":  120,
     "medium": 220,
     "large":  380
 };
 
-/* These are the fixed prices for equipment packages */
+/* -- Equipment package flat costs -- */
 var equipCosts = {
     "basic":    150,
     "standard": 350,
     "premium":  700
 };
 
-/* These are the fixed prices for post-production packages */
+/* -- Post-production flat costs -- */
 var postCosts = {
     "basic":    100,
     "standard": 250,
@@ -207,77 +199,69 @@ var postCosts = {
 };
 
 
-   /* This function does the full cost calculation.
-   It runs when the user clicks the calculate button. */
-   
 function calculateCost() {
 
-    /* Here I get the values that the user selected or typed */
     var clientType = document.getElementById("clientType").value;
     var days       = parseInt(document.getElementById("shootDays").value);
     var crewKey    = document.getElementById("crewSize").value;
     var equipKey   = document.getElementById("equipPackage").value;
     var postKey    = document.getElementById("postProd").value;
 
-    /* This checks if the number of days is valid */
+  
     if (isNaN(days) || days < 1) {
         alert("Please enter a valid number of shooting days (minimum 1).");
         document.getElementById("shootDays").focus();
         return;
     }
 
-    /* Here I get the matching prices from the objects above */
+    
     var dailyRate = crewRates[crewKey];
     var equipCost = equipCosts[equipKey];
     var postCost  = postCosts[postKey];
 
-    /* Crew cost = daily crew rate × number of days */
+    
     var crewCost = dailyRate * days;
 
-    /* This part checks the add-ons.
-       If the checkbox is ticked, its value gets added to the total */
+    
     var addonTotal = 0;
     var addonIds   = ["addDrone", "addSubs", "addSocial", "addBTS"];
     for (var i = 0; i < addonIds.length; i++) {
         var cb = document.getElementById(addonIds[i]);
         if (cb.checked) {
-            addonTotal = addonTotal + parseInt(cb.value); /* add selected add-on price */
+            addonTotal = addonTotal + parseInt(cb.value); 
         }
     }
 
-    /* Subtotal means all the main costs added together before discount and VAT */
+   
     var subtotal = crewCost + equipCost + postCost + addonTotal;
 
-    /* This part checks the client type and gives discount if needed
-       Loyal clients get 15%
-       Students / NGOs get 10%
-       New clients get no discount */
+  
     var discountRate  = 0;
     var discountLabel = "";
 
     if (clientType == "loyal") {
-        discountRate  = 0.15;  /* loyal client discount */
+        discountRate  = 0.15;  
         discountLabel = "15% Loyalty";
     } else if (clientType == "student") {
-        discountRate  = 0.10;  /* student or NGO discount */
+        discountRate  = 0.10;  
         discountLabel = "10% Student/NGO";
     } else {
-        discountRate  = 0;     /* no discount */
+        discountRate  = 0;   
     }
 
-    /* Here I calculate how much discount should be taken off */
+   
     var discountAmount = subtotal * discountRate;
 
-    /* This gives the amount after removing the discount */
+   
     var afterDiscount = subtotal - discountAmount;
 
-    /* VAT is 5% and it is added after the discount */
+   
     var vatAmount = afterDiscount * 0.05;
 
-    /* Final total = amount after discount + VAT */
+   
     var grandTotal = afterDiscount + vatAmount;
 
-    /* This shows all the results on the page */
+   
     document.getElementById("rCrew").innerHTML          = "OMR " + crewCost.toFixed(3);
     document.getElementById("rEquip").innerHTML         = "OMR " + equipCost.toFixed(3);
     document.getElementById("rPost").innerHTML          = "OMR " + postCost.toFixed(3);
@@ -287,8 +271,7 @@ function calculateCost() {
     document.getElementById("rVAT").innerHTML           = "OMR " + vatAmount.toFixed(3);
     document.getElementById("rTotal").innerHTML         = "OMR " + grandTotal.toFixed(3);
 
-    /* If there is a discount, show the discount row.
-       If not, hide it */
+    
     if (discountRate > 0) {
         document.getElementById("discountRow").style.display   = "flex";
         document.getElementById("rDiscount").innerHTML         = "- OMR " + discountAmount.toFixed(3);
@@ -297,14 +280,11 @@ function calculateCost() {
         document.getElementById("discountRow").style.display   = "none";
     }
 
-    /* This makes the result box appear after calculation */
+   
     document.getElementById("resultBox").style.display = "block";
 }
 
-/* 
-   This function clears part of the calculator.
-   It hides the result box and sets shooting days back to 1.
- */
+
 function clearCalc() {
     document.getElementById("resultBox").style.display = "none";
     document.getElementById("shootDays").value         = "1";
